@@ -1,0 +1,59 @@
+{
+  "name": "northcodersnews",
+  "version": "1.0.0",
+  "description": "Northcoders News  Northcoders News is a social news aggregation, web content rating, and discussion website. It is similar to Reddit  Northcoders News has articles which are divided into topics. Each article has user curated ratings and can be up or down voted using the API. Users can also add comments about an article. Comments can also be up or down voted. A user can add comments and remove any comments which they have added.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tfarrelly01/NorthcodersNews.git"
+  },
+  "author": "Tony Farrelly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tfarrelly01/NorthcodersNews/issues"
+  },
+  "homepage": "https://github.com/tfarrelly01/NorthcodersNews#readme",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "bulma": "^0.5.3",
+    "cors": "^2.8.4",
+    "css-loader": "^0.28.7",
+    "file-loader": "^0.11.2",
+    "prop-types": "^15.6.0",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "react-spinkit": "^3.0.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "style-loader": "^0.18.2",
+    "underscore": "^1.8.3",
+    "url-loader": "^0.5.9",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx": "0.0.2",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.14.3",
+    "jest": "^21.1.0",
+    "jest-serializer-enzyme": "^1.0.0",
+    "moxios": "^0.4.0",
+    "nodemon": "^1.12.1",
+    "react-test-renderer": "^15.6.2"
+  }
+}
