@@ -1,32 +1,26 @@
-
 import * as types from '../actions/actionTypes';
+import INITIAL_STATE from './INITIAL_STATE';
 
-const initialState = {
-  data: [],
-  loading: false,
-  error: null
-};
+function reducer (prevState = INITIAL_STATE, action) {
 
-function topicsReducer (prevState = initialState, topic) {
+  if (!action) return prevState;
 
-  if (!topic) return prevState;
-
-  if (topic.type === types.FETCH_TOPICS_REQUEST) {
+  if (action.type === types.FETCH_TOPICS_REQUEST) {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
     return newState;
   }
 
-  if (topic.type === types.FETCH_TOPICS_SUCCESS) {
+  if (action.type === types.FETCH_TOPICS_SUCCESS) {
     const newState = Object.assign({}, prevState);
-    newState.data = topic.payload;
+    newState.data = action.payload;
     newState.loading = false;
     return newState;
   }
 
-  if (topic.type === types.FETCH_TOPICS_ERROR) {
+  if (action.type === types.FETCH_TOPICS_ERROR) {
     const newState = Object.assign({}, prevState);
-    newState.error = topic.payload;
+    newState.error = action.payload;
     newState.data = [];
     newState.loading = false;
     return newState;
@@ -34,4 +28,4 @@ function topicsReducer (prevState = initialState, topic) {
   return prevState;
 }
 
-export default topicsReducer;
+ export default reducer;
