@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Action Creators  fetchTopics success action returns data passed 1`] = `
+Object {
+  "payload": Array [
+    "foo",
+    "bar",
+    "baz",
+  ],
+  "type": "FETCH_TOPICS_SUCCESS",
+}
+`;
