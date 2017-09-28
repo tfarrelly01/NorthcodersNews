@@ -9,7 +9,7 @@
     "test:coverage": "jest --coverage",
     "test:update": "jest -u",
     "posttest": "npm run lint",
-    "precommit": "npm run lint",
+    "precommit": "npm test",
     "dev": "webpack-dev-server",
     "lint": "eslint **/*.{js,jsx}"
   },
