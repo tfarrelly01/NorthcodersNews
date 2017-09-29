@@ -1,35 +1,31 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
-
+import { Router, Route, Switch } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+// import 'bulma/css/bulma.css';
 import HomePage from './HomePage';
 import TopicArticles from './TopicArticles';
 import ArticlePage from './ArticlePage';
 import FourOhFour from './FourOhFour';
+import TopicHeadings from './TopicHeadings';
 
-const App = () => {
-  return (
-    <div className="app">  
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/topics/football/articles">Topic</Link>
-          </li>
-          <li>
-            <Link to="/articles/2/comments">Article</Link>
-          </li>
-        </ul>
-      </nav>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/topics/:topic_slug/articles" component={TopicArticles} />  
-        <Route path="/articles/:article_id/comments" component={ArticlePage} />
-        <Route component={FourOhFour} />
-      </Switch>
+const history = createBrowserHistory();
+
+const App = () => (
+  <Router history={history}>
+    <div className="app">
+      <div className="topic-header">
+        <TopicHeadings />
+      </div>
+      <div>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/topics/:topic_slug/articles" component={TopicArticles} />
+          <Route path="/articles/:article_id/comments" component={ArticlePage} />
+          <Route component={FourOhFour} />
+        </Switch>
+      </div>
     </div>
-  );
-}
+  </Router>
+);
 
 export default App;

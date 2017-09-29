@@ -32,7 +32,7 @@ describe('REDUCER', () => {
 			};
 			const test = reducer(INITIAL_STATE, action);
 			expect(test.loading).toEqual(false);
-			expect(test.data).toEqual([
+			expect(test.topics).toEqual([
 				{
 					title: 'Coding',
 					slug: 'coding',
@@ -47,7 +47,7 @@ describe('REDUCER', () => {
 			};
 			const test = reducer(INITIAL_STATE, action);
 			expect(test.loading).toEqual(false);
-			expect(test.data).toEqual([]);
+			expect(test.topics).toEqual([]);
 			expect(test.error).toEqual('ERROR - An error has occurred!');
 		});
 	});

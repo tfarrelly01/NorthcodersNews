@@ -13,7 +13,7 @@ function reducer (prevState = INITIAL_STATE, action) {
 
   if (action.type === types.FETCH_TOPICS_SUCCESS) {
     const newState = Object.assign({}, prevState);
-    newState.data = action.payload;
+    newState.topics = action.payload;
     newState.loading = false;
     return newState;
   }
@@ -21,7 +21,7 @@ function reducer (prevState = INITIAL_STATE, action) {
   if (action.type === types.FETCH_TOPICS_ERROR) {
     const newState = Object.assign({}, prevState);
     newState.error = action.payload;
-    newState.data = [];
+    newState.topics = [];
     newState.loading = false;
     return newState;
   }

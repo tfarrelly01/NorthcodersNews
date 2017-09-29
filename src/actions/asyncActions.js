@@ -1,10 +1,14 @@
 import axios from 'axios';
 import { ROOT } from '../../config';
-import { fetchTopicsRequest, fetchTopicsSuccess, fetchTopicsError } from './actionCreators';
+import { 
+  fetchTopicsRequest, 
+  fetchTopicsSuccess, 
+  fetchTopicsError,
+} from './actionCreators';
 
 // GET api/topics
-function fetchTopics () {
-  return function (dispatch) {
+export const fetchTopics = () => {
+  return dispatch => {
     dispatch(fetchTopicsRequest());
     axios.get(`${ROOT}/topics`)
       .then(res => {
@@ -17,4 +21,7 @@ function fetchTopics () {
   };
 }
 
-export default fetchTopics;
+// Temporary to bypass export const linting error
+export const fetchNest = () => {
+
+}

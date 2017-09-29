@@ -1,6 +1,6 @@
 import moxios from 'moxios';
 import { fetchTopicsRequest } from '../actions/actionCreators';
-import fetchTopics from '../actions/asyncActions';
+import { fetchTopics } from '../actions/asyncActions';
 
 import { ROOT } from '../../config';
 

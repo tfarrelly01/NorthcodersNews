@@ -2,6 +2,6 @@
 
 exports[`HomePage renders correctly 1`] = `
 <h1>
-  Home Page (All Articles)
+  HOME PAGE
 </h1>
 `;

@@ -1,5 +1,5 @@
 import * as actions from '../actions/actionCreators';
-import  fetchTopics from '../actions/asyncActions';
+import  { fetchTopics } from '../actions/asyncActions';
 
 const data = [
   'foo',
