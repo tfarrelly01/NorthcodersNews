@@ -1,7 +1,6 @@
 import moxios from 'moxios';
 import * as actions from '../actions/actionCreators';
 import * as asyncActions from '../actions/asyncActions';
-
 import { ROOT } from '../../config';
 
 const data = [
@@ -28,6 +27,7 @@ describe('Test Async Actions  ', () => {
         .then(() => {
           expect(request.url).toEqual(`${ROOT}/topics`);
           expect(dispatchMock).toBeCalledWith(actions.fetchTopicsRequest());
+          expect(dispatchMock).toBeCalledWith(actions.fetchTopicsSuccess());
           done();
         })
         .catch(done.fail);
@@ -52,6 +52,7 @@ describe('Test Async Actions  ', () => {
         .then(() => {
           expect(request.url).toEqual(`${ROOT}/articles`);
           expect(dispatchMock).toBeCalledWith(actions.fetchArticlesRequest());
+          expect(dispatchMock).toBeCalledWith(actions.fetchArticlesSuccess());
           done();
         })
         .catch(done.fail);
