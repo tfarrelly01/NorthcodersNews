@@ -22,7 +22,7 @@ export const fetchArticles = () => {
     dispatch(actions.fetchArticlesRequest());
     axios.get(`${ROOT}/articles`)
       .then(res => {
-        dispatch(actions.fetchArticlesSuccess(res.data.Articles));
+        dispatch(actions.fetchArticlesSuccess(res.data.articles));
       })
       .catch(err => {
         dispatch(actions.fetchArticlesError(err));
