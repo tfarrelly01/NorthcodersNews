@@ -5,6 +5,7 @@ function reducer (prevState = INITIAL_STATE, action) {
 
   if (!action) return prevState;
 
+  // FETCH TOPICS
   if (action.type === types.FETCH_TOPICS_REQUEST) {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
@@ -25,6 +26,29 @@ function reducer (prevState = INITIAL_STATE, action) {
     newState.loading = false;
     return newState;
   }
+
+  // FETCH ARTICLES
+  if (action.type === types.FETCH_ARTICLES_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_ARTICLES_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.articles = action.payload;
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_ARTICLES_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.articles = [];
+    newState.loading = false;
+    return newState;
+  }
+
   return prevState;
 }
 

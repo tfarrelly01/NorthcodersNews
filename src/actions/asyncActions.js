@@ -1,24 +1,17 @@
 import axios from 'axios';
 import { ROOT } from '../../config';
-import { 
-  fetchTopicsRequest, 
-  fetchTopicsSuccess, 
-  fetchTopicsError,
-  fetchArticlesRequest, 
-  fetchArticlesSuccess, 
-  fetchArticlesError
-} from './actionCreators';
+import * as actions from './actionCreators';
 
 // GET api/topics
 export const fetchTopics = () => {
   return dispatch => {
-    dispatch(fetchTopicsRequest());
+    dispatch(actions.fetchTopicsRequest());
     axios.get(`${ROOT}/topics`)
       .then(res => {
-        dispatch(fetchTopicsSuccess(res.data.topics));
+        dispatch(actions.fetchTopicsSuccess(res.data.topics));
       })
       .catch(err => {
-        dispatch(fetchTopicsError(err));
+        dispatch(actions.fetchTopicsError(err));
       });
   };
 }
@@ -26,13 +19,13 @@ export const fetchTopics = () => {
 // GET api/articles
 export const fetchArticles = () => {
   return dispatch => {
-    dispatch(fetchArticlesRequest());
+    dispatch(actions.fetchArticlesRequest());
     axios.get(`${ROOT}/articles`)
       .then(res => {
-        dispatch(fetchArticlesSuccess(res.data.Articles));
+        dispatch(actions.fetchArticlesSuccess(res.data.Articles));
       })
       .catch(err => {
-        dispatch(fetchArticlesError(err));
+        dispatch(actions.fetchArticlesError(err));
       });
 
   };

@@ -51,5 +51,46 @@ describe('REDUCER', () => {
 			expect(test.error).toEqual('ERROR - An error has occurred!');
 		});
 	});
+
+	describe('FETCH_ARTICLES actions reducer', () => {
+		test('action: FETCH_ARTICLES_REQUEST', () => {
+			const action = {
+				type: types.FETCH_ARTICLES_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
+
+		test('action: FETCH_ARTICLES_SUCCESS', () => {
+			const action = {
+				type: types.FETCH_ARTICLES_SUCCESS,
+				payload: [
+					{
+						title: 'Article Title',
+						description: 'Article Descriiption'
+					}
+				]
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.articles).toEqual([
+				{
+					title: 'Article Title',
+					description: 'Article Descriiption'
+				}
+			]);
+		});
+
+		test('action: FETCH_ARTICLES_ERROR', () => {
+			const action = {
+				type: types.FETCH_ARTICLES_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.articles).toEqual([]);
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
 });
 
