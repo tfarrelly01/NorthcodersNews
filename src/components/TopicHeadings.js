@@ -14,7 +14,9 @@ export class TopicHeadings extends React.Component {
     return (
       <div>
         <nav className="level">
-          <Link to={'/'}>All</Link>
+          <Link to={'/'}>
+              All
+          </Link>
           {this.props.topics.map(topic => (
             <Link key={topic._id} to={`/topics/${topic.slug}/articles`}>
               {topic.title}
