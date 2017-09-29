@@ -19,3 +19,23 @@ export function fetchTopicsError (error) {
     payload: error
   };
 }
+
+export function fetchArticlesRequest () {
+  return {
+    type: types.FETCH_ARTICLES_REQUEST
+  };
+}
+
+export function fetchArticlesSuccess (articles) {
+  return {
+    type: types.FETCH_ARTICLES_SUCCESS,
+    payload: articles
+  };
+}
+
+export function fetchArticlesError (error) {
+  return {
+    type: types.FETCH_ARTICLES_ERROR,
+    payload: error
+  };
+}

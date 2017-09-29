@@ -1,5 +1,5 @@
 import * as actions from '../actions/actionCreators';
-import  { fetchTopics } from '../actions/asyncActions';
+import * as asyncActions from '../actions/asyncActions';
 
 const data = [
   'foo',
@@ -10,9 +10,9 @@ const errMsg = 'ERROR - Error message';
 
 describe('Test Action Creators ', () => {
 
-	describe('fetchTopics', () => {
+	describe('Action Creator: fetchTopics', () => {
 		test('is a function', () => {
-			expect(typeof fetchTopics).toBe('function');
+			expect(typeof asyncActions.fetchTopics).toBe('function');
 		});
 
 		test('request action returns an object', () => {
@@ -34,6 +34,34 @@ describe('Test Action Creators ', () => {
 
 		test('error action returns data passed', () => {
 			const test = actions.fetchTopicsError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
+
+	describe('Action Creator: fetchArticles', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.fetchArticles).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.fetchArticlesRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.fetchArticlesSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.fetchArticlesError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.fetchArticlesSuccess(data);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.fetchArticlesError(errMsg);
       expect(test.payload).toEqual(errMsg);
 		});
 	});

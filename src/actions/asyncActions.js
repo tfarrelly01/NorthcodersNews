@@ -4,6 +4,9 @@ import {
   fetchTopicsRequest, 
   fetchTopicsSuccess, 
   fetchTopicsError,
+  fetchArticlesRequest, 
+  fetchArticlesSuccess, 
+  fetchArticlesError
 } from './actionCreators';
 
 // GET api/topics
@@ -17,11 +20,20 @@ export const fetchTopics = () => {
       .catch(err => {
         dispatch(fetchTopicsError(err));
       });
-
   };
 }
 
-// Temporary to bypass export const linting error
-export const fetchNest = () => {
+// GET api/articles
+export const fetchArticles = () => {
+  return dispatch => {
+    dispatch(fetchArticlesRequest());
+    axios.get(`${ROOT}/articles`)
+      .then(res => {
+        dispatch(fetchArticlesSuccess(res.data.Articles));
+      })
+      .catch(err => {
+        dispatch(fetchArticlesError(err));
+      });
 
+  };
 }
