@@ -13,6 +13,7 @@ export class HomePage extends React.Component {
       <div>
         <h1>HOME PAGE</h1>
         { this.props.articles
+          .sort((a, b) => b.votes - a.votes)
             .map(article => (
               <ArticleCard
                 key={article._id}
