@@ -59,4 +59,29 @@ describe('Test Async Actions  ', () => {
       })
     });
   });
+
+  test('Async Action: fetchUsers', (done) => {
+    const dispatchMock = jest.fn();
+    moxios.withMock(() => {
+
+    //  asyncActions.fetchUsers()(dispatchMock);
+      const thunk = asyncActions.fetchUsers();
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 200,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/users`);
+          expect(dispatchMock).toBeCalledWith(actions.fetchUsersRequest());
+          expect(dispatchMock).toBeCalledWith(actions.fetchUsersSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
 });

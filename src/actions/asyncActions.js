@@ -33,4 +33,16 @@ export const fetchArticles = () => {
 
 // GET api/users
 export const fetchUsers = () => {
+  return dispatch => {
+    dispatch(actions.fetchUsersRequest());
+    axios.get(`${ROOT}/users`)
+      .then(res => {
+        console.log('Users:::', res.data);
+        dispatch(actions.fetchUsersSuccess(res.data.users));
+      })
+      .catch(err => {
+        dispatch(actions.fetchUsersError(err));
+      });
+
+  };
 };
