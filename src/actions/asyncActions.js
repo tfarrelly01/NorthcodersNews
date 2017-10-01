@@ -27,7 +27,6 @@ export const fetchArticles = () => {
       .catch(err => {
         dispatch(actions.fetchArticlesError(err));
       });
-
   };
 };
 
@@ -37,12 +36,10 @@ export const fetchUsers = () => {
     dispatch(actions.fetchUsersRequest());
     axios.get(`${ROOT}/users`)
       .then(res => {
-        console.log('Users:::', res.data);
         dispatch(actions.fetchUsersSuccess(res.data.users));
       })
       .catch(err => {
         dispatch(actions.fetchUsersError(err));
       });
-
   };
 };
