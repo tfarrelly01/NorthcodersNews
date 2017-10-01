@@ -84,4 +84,30 @@ describe('Test Async Actions  ', () => {
       })
     });
   });
+
+  test('Async Action: fetchTopicArticles', (done) => {
+    const dispatchMock = jest.fn();
+    const topicSlug = 'food';
+    moxios.withMock(() => {
+
+    //  asyncActions.fetchTopicArticles()(dispatchMock);
+      const thunk = asyncActions.fetchTopicArticles(topicSlug);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 200,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/${topicSlug}/articles`);
+          expect(dispatchMock).toBeCalledWith(actions.fetchTopicArticlesRequest());
+          expect(dispatchMock).toBeCalledWith(actions.fetchTopicArticlesSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
 });

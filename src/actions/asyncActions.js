@@ -45,6 +45,15 @@ export const fetchUsers = () => {
 };
 
 // GET api/topics/:topic_slug/articles
-export const fetchTopicArticles = () => {
-
+export const fetchTopicArticles = (topicSlug) => {
+  return dispatch => {
+    dispatch(actions.fetchTopicArticlesRequest());
+    axios.get(`${ROOT}/${topicSlug}/articles`)
+      .then(res => {
+        dispatch(actions.fetchTopicArticlesSuccess(res.data.articles));
+      })
+      .catch(err => {
+        dispatch(actions.fetchTopicArticlesError(err));
+      });
+  };
 };
