@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchArticles, fetchUsers } from '../actions/asyncActions';
+import { fetchUsers, fetchArticles } from '../actions/asyncActions';
 import ArticleCard from './ArticleCard';
 
 export class HomePage extends React.Component {
 	componentDidMount() {
-		this.props.fetchArticles();
     this.props.fetchUsers();
+		this.props.fetchArticles();
 	}
   render() {
     return (
@@ -17,7 +17,6 @@ export class HomePage extends React.Component {
           .sort((a, b) => b.votes - a.votes)
             .map((article) => {
               let userProfile = this.props.users.find(user => user.username === article.created_by);
-   //          console.log('userProfile', userProfile);
               return (
                 <ArticleCard
                   key={article._id}
@@ -38,26 +37,26 @@ export class HomePage extends React.Component {
 
 function mapStateToProps(state) {
 	return {
-		articles: state.articles,
-    users: state.users
+    users: state.users,
+		articles: state.articles
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		fetchArticles: () => {
-			dispatch(fetchArticles());
-		},
     fetchUsers: () => {
 			dispatch(fetchUsers());
 		},
+		fetchArticles: () => {
+			dispatch(fetchArticles());
+		}
 	};
 }
 
 HomePage.propTypes = {
-	articles: PropTypes.array.isRequired,
   users: PropTypes.array.isRequired,
-	fetchArticles: PropTypes.func.isRequired,
+	articles: PropTypes.array.isRequired,
+  fetchArticles: PropTypes.func.isRequired,
 	fetchUsers: PropTypes.func.isRequired
 };
 
