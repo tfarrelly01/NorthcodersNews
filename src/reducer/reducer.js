@@ -49,6 +49,28 @@ function reducer (prevState = INITIAL_STATE, action) {
     return newState;
   }
 
+  // FETCH USERS
+  if (action.type === types.FETCH_USERS_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_USERS_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.users = action.payload;
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_USERS_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.users = [];
+    newState.loading = false;
+    return newState;
+  }
+
   return prevState;
 }
 

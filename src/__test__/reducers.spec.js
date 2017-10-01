@@ -92,5 +92,47 @@ describe('REDUCER', () => {
 			expect(test.error).toEqual('ERROR - An error has occurred!');
 		});
 	});
+
+	describe('FETCH_USERS actions reducer', () => {
+		test('action: FETCH_USERS_REQUEST', () => {
+			const action = {
+				type: types.FETCH_USERS_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
+
+		test('action: FETCH_USERS_SUCCESS', () => {
+			const action = {
+				type: types.FETCH_USERS_SUCCESS,
+				payload: [
+					{
+						title: 'User Title',
+						description: 'User Descriiption'
+					}
+				]
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.users).toEqual([
+				{
+					title: 'User Title',
+					description: 'User Descriiption'
+				}
+			]);
+		});
+
+		test('action: FETCH_USERS_ERROR', () => {
+			const action = {
+				type: types.FETCH_USERS_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.users).toEqual([]);
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
+
 });
 

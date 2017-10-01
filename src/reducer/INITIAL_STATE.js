@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   topics: [],
   articles: [],
+  users: [],
   loading: false,
   error: null
 };
