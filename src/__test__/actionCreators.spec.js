@@ -94,4 +94,32 @@ describe('Test Action Creators ', () => {
 		});
 	});
 	
+
+	describe('Action Creator: fetchTopicArticles', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.fetchTopicArticles).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.fetchTopicArticlesRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.fetchTopicArticlesSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.fetchTopicArticlesError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.fetchTopicArticlesSuccess(data);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.fetchTopicArticlesError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
 });

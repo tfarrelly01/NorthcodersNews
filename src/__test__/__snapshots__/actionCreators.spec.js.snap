@@ -11,6 +11,17 @@ Object {
 }
 `;
 
+exports[`Test Action Creators  Action Creator: fetchTopicArticles success action returns data passed 1`] = `
+Object {
+  "payload": Array [
+    "foo",
+    "bar",
+    "baz",
+  ],
+  "type": "FETCH_TOPIC_ARTICLES_SUCCESS",
+}
+`;
+
 exports[`Test Action Creators  Action Creator: fetchTopics success action returns data passed 1`] = `
 Object {
   "payload": Array [

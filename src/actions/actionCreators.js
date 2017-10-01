@@ -59,3 +59,25 @@ export const fetchUsersError = (error) => {
     payload: error
   };
 };
+
+export const fetchTopicArticlesRequest = () => {
+  return {
+    type: types.FETCH_TOPIC_ARTICLES_REQUEST
+  };
+};
+
+export const fetchTopicArticlesSuccess = (articles) => {
+  return {
+    type: types.FETCH_TOPIC_ARTICLES_SUCCESS,
+    payload: articles
+  };
+};
+
+export const fetchTopicArticlesError = (error) => {
+  return {
+    type: types.FETCH_TOPIC_ARTICLES_ERROR,
+    payload: error
+  };
+};
+
+

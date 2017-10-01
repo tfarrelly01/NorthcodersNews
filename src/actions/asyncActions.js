@@ -43,3 +43,8 @@ export const fetchUsers = () => {
       });
   };
 };
+
+// GET api/topics/:topic_slug/articles
+export const fetchTopicArticles = () => {
+
+};
