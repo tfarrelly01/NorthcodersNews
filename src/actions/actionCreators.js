@@ -1,61 +1,61 @@
 import * as types from './actionTypes';
 
-export function fetchTopicsRequest () {
+export const fetchTopicsRequest = () => {
   return {
     type: types.FETCH_TOPICS_REQUEST
   };
-}
+};
 
-export function fetchTopicsSuccess (topics) {
+export const fetchTopicsSuccess = (topics) => {
   return {
     type: types.FETCH_TOPICS_SUCCESS,
     payload: topics
   };
-}
+};
 
-export function fetchTopicsError (error) {
+export const fetchTopicsError = (error) => {
   return {
     type: types.FETCH_TOPICS_ERROR,
     payload: error
   };
-}
+};
 
-export function fetchArticlesRequest () {
+export const fetchArticlesRequest = () => {
   return {
     type: types.FETCH_ARTICLES_REQUEST
   };
-}
+};
 
-export function fetchArticlesSuccess (articles) {
+export const fetchArticlesSuccess = (articles) => {
   return {
     type: types.FETCH_ARTICLES_SUCCESS,
     payload: articles
   };
-}
+};
 
-export function fetchArticlesError (error) {
+export const fetchArticlesError = (error) => {
   return {
     type: types.FETCH_ARTICLES_ERROR,
     payload: error
   };
-}
+};
 
-export function fetchUsersRequest () {
+export const fetchUsersRequest = () => {
   return {
     type: types.FETCH_USERS_REQUEST
   };
-}
+};
 
-export function fetchUsersSuccess (users) {
+export const fetchUsersSuccess = (users) => {
   return {
     type: types.FETCH_USERS_SUCCESS,
     payload: users
   };
-}
+};
 
-export function fetchUsersError (error) {
+export const fetchUsersError = (error) => {
   return {
     type: types.FETCH_USERS_ERROR,
     payload: error
   };
-}
+};
