@@ -9,9 +9,11 @@ export class HomePage extends React.Component {
 		this.props.fetchArticles();
 	}
   render() {
+         console.log('this.props:::', this.props);
     return (
       <div>
         <h1>HOME PAGE</h1>
+ 
         { this.props.articles
           .sort((a, b) => b.votes - a.votes)
             .map(article => (
