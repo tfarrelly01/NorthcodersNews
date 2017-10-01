@@ -14,7 +14,7 @@ export const fetchTopics = () => {
         dispatch(actions.fetchTopicsError(err));
       });
   };
-}
+};
 
 // GET api/articles
 export const fetchArticles = () => {
@@ -29,4 +29,8 @@ export const fetchArticles = () => {
       });
 
   };
-}
+};
+
+// GET api/users
+export const fetchUsers = () => {
+};

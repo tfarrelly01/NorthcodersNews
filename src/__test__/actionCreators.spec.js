@@ -66,4 +66,32 @@ describe('Test Action Creators ', () => {
 		});
 	});
 
+	describe('Action Creator: fetchUsers', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.fetchUsers).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.fetchUsersRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.fetchUsersSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.fetchUsersError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.fetchUsersSuccess(data);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.fetchUsersError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
+	
 });
