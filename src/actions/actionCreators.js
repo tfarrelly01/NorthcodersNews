@@ -100,4 +100,24 @@ export const fetchArticleError = (error) => {
   };
 };
 
+export const fetchArticleCommentsRequest = () => {
+  return {
+    type: types.FETCH_ARTICLE_COMMENTS_REQUEST
+  };
+};
+
+export const fetchArticleCommentsSuccess = (comments) => {
+  return {
+    type: types.FETCH_ARTICLE_COMMENTS_SUCCESS,
+    payload: comments
+  };
+};
+
+export const fetchArticleCommentsError = (error) => {
+  return {
+    type: types.FETCH_ARTICLE_COMMENTS_ERROR,
+    payload: error
+  };
+};
+
 

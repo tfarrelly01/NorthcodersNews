@@ -136,4 +136,30 @@ describe('Test Async Actions  ', () => {
       })
     });
   });
+  
+  test('Async Action: fetchArticleComments', (done) => {
+    const dispatchMock = jest.fn();
+    const articleId = '12345';
+    moxios.withMock(() => {
+
+    //  asyncActions.fetchArticleComments(articleId)(dispatchMock);
+      const thunk = asyncActions.fetchArticleComments(articleId);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 200,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/articles/${articleId}/comments`);
+          expect(dispatchMock).toBeCalledWith(actions.fetchArticleCommentsRequest());
+          expect(dispatchMock).toBeCalledWith(actions.fetchArticleCommentsSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
 });

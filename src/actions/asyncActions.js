@@ -72,3 +72,18 @@ export const fetchArticle = (articleId) => {
   };
 };
 
+// GET api/articles/:article_id/comments
+export const fetchArticleComments = (articleId) => {
+  return dispatch => {
+    dispatch(actions.fetchArticleCommentsRequest());
+    axios.get(`${ROOT}/articles/${articleId}/comments`)
+      .then(res => {
+        dispatch(actions.fetchArticleCommentsSuccess(res.data.comments));
+      })
+      .catch(err => {
+        dispatch(actions.fetchArticleCommentsError(err));
+      });
+  };
+};
+
+
