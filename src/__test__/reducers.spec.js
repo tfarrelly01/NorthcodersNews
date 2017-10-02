@@ -201,16 +201,16 @@ describe('REDUCER', () => {
 			const action = {
 				type: types.FETCH_ARTICLE_SUCCESS,
 				payload: {
-						_id: '59b8055c4aa8a6146505ef30',
-						title: 'Who Will Manage Your Club in 2021?',
-						body:
-							'Managerial changes are too common in the modern day game. Already in the 16/17 season, we have seen 14 managers lose their job from the Premier League to League Two. Swansea’s Francesco Guidolin became the first top division manager to lose his job but already question marks are raised regarding the future of the likes of David Moyes and Mike Phelan.',
-						created_by: 'tickle122',
-						belongs_to: 'football',
-						votes: 8,
-						__v: 0,
-						comments: 6
-					}
+					_id: '59b8055c4aa8a6146505ef30',
+					title: 'Who Will Manage Your Club in 2021?',
+					body:
+						'Managerial changes are too common in the modern day game. Already in the 16/17 season, we have seen 14 managers lose their job from the Premier League to League Two. Swansea’s Francesco Guidolin became the first top division manager to lose his job but already question marks are raised regarding the future of the likes of David Moyes and Mike Phelan.',
+					created_by: 'tickle122',
+					belongs_to: 'football',
+					votes: 8,
+					__v: 0,
+					comments: 6
+				}
 			};
 			const test = reducer(INITIAL_STATE, action);
 			expect(test.loading).toEqual(false);
@@ -225,6 +225,58 @@ describe('REDUCER', () => {
 			const test = reducer(INITIAL_STATE, action);
 			expect(test.loading).toEqual(false);
 			expect(test.article).toEqual({});
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
+
+	describe('FETCH_ARTICLE_COMMENTS actions reducer', () => {
+		test('action: FETCH_ARTICLE_COMMENTS_REQUEST', () => {
+			const action = {
+				type: types.FETCH_ARTICLE_COMMENTS_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
+
+		test('action: FETCH_ARTICLE_COMMENTS_SUCCESS', () => {
+			const action = {
+				type: types.FETCH_ARTICLE_COMMENTS_SUCCESS,
+				payload: [
+					{
+						_id: '59b8055c4aa8a6146505efb2',
+						body:
+							'Omuder niciwel udowag udihuko bajbi si opesemco ja lilipo so puri gombi. Sozahi ugotu ohevevhi jopsuije nepa za ejuemojin oto kaduksak pa egu rapev. Jarnu baf ivicedbub tir epo pilzavmoj kavkuzla riced wulutawu irwera sinimev sewtiz fogvi juca.',
+						belongs_to: '59b8055c4aa8a6146505ef3b',
+						__v: 0,
+						created_by: 'happyamy2016',
+						votes: 8,
+						created_at: 1504732960000
+					},
+					{
+						_id: '59b8055c4aa8a6146505efb3',
+						body:
+							'Hihemif foaz eb viw batopfu efoago wakzijuw lad pim sawok saz dir fi bekgu pukma kenurib. Gu ta biw owhas dehmujon dow el ze sumi cebkek wewablub hol wije dotwez febvihoc di siperob. Emzis ekauk ojganip seusauje uteka zak puweipe hawaj todjiabe ibeskaf beok vaessu sik lahuhaoh hup dozgi cehrib. Bataz og biuhuvit aba puij ecde jonpadzo vus bedabuje juphis etewuup ap nugabjuh lukezu fe jap.',
+						belongs_to: '59b8055c4aa8a6146505ef3b',
+						__v: 0,
+						created_by: 'cooljmessy',
+						votes: 2,
+						created_at: 1504750660000
+					}
+				]
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.comments).toEqual(action.payload);
+		});
+
+		test('action: FETCH_ARTICLE_COMMENTS_ERROR', () => {
+			const action = {
+				type: types.FETCH_ARTICLE_COMMENTS_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.comments).toEqual([]);
 			expect(test.error).toEqual('ERROR - An error has occurred!');
 		});
 	});

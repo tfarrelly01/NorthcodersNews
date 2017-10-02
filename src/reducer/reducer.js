@@ -99,6 +99,28 @@ function reducer (prevState = INITIAL_STATE, action) {
     return newState;
   }
 
+  // FETCH ARTICLE COMMENTS
+  if (action.type === types.FETCH_ARTICLE_COMMENTS_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_ARTICLE_COMMENTS_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.comments = action.payload;
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_ARTICLE_COMMENTS_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.comments = [];
+    newState.loading = false;
+    return newState;
+  }
+
   return prevState;
 }
 

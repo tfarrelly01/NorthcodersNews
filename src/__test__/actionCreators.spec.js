@@ -122,7 +122,6 @@ describe('Test Action Creators ', () => {
 		});
 	});
 
-
 	describe('Action Creator: fetchArticle', () => {
 		test('is a function', () => {
 			expect(typeof asyncActions.fetchArticle).toBe('function');
@@ -147,6 +146,34 @@ describe('Test Action Creators ', () => {
 
 		test('error action returns data passed', () => {
 			const test = actions.fetchArticleError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
+
+	describe('Action Creator: fetchArticleComments', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.fetchArticleComments).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.fetchArticleCommentsRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.fetchArticleCommentsSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.fetchArticleCommentsError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.fetchArticleCommentsSuccess(data);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.fetchArticleCommentsError(errMsg);
       expect(test.payload).toEqual(errMsg);
 		});
 	});

@@ -11,6 +11,17 @@ Object {
 }
 `;
 
+exports[`Test Action Creators  Action Creator: fetchArticleComments success action returns data passed 1`] = `
+Object {
+  "payload": Array [
+    "foo",
+    "bar",
+    "baz",
+  ],
+  "type": "FETCH_ARTICLE_COMMENTS_SUCCESS",
+}
+`;
+
 exports[`Test Action Creators  Action Creator: fetchArticles success action returns data passed 1`] = `
 Object {
   "payload": Array [
