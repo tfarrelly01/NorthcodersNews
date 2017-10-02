@@ -1,7 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TopicArticles renders correctly 1`] = `
-<h1>
-  Topic Articles
-</h1>
-`;
+exports[`TopicArticles Component TopicArticles renders correctly 1`] = `<Connect(TopicArticles) />`;
