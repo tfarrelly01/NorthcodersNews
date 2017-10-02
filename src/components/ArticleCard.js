@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import 'bulma/css/bulma.css';
 
@@ -16,7 +17,8 @@ const ArticleCard = (props) => (
       </div>
       <div className='media-content'>
         <div className='content'>
-          <h3 className='title is-4'>{props.title}</h3>
+          {console.log('props:',props)}
+          <Link to={`/articles/${props.id}/comments`} className="title is-4">{props.title}</Link>
           <h5 className='title is-5'>By: {props.createdBy}</h5>
         </div>
       </div>
@@ -26,6 +28,7 @@ const ArticleCard = (props) => (
 
 
 ArticleCard.propTypes = {
+  id: PropTypes.string.isRequired, 
   title: PropTypes.string.isRequired,
   createdBy: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,

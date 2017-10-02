@@ -25,6 +25,7 @@ export class TopicArticles extends React.Component {
             return (
               <ArticleCard
                 key={article._id}
+                id={article._id}
                 title={article.title}
                 createdBy={article.created_by}
                 votes={article.votes}
