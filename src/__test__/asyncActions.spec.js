@@ -162,4 +162,31 @@ describe('Test Async Actions  ', () => {
       })
     });
   });
+
+  test('Async Action: addComment', (done) => {
+    const dispatchMock = jest.fn();
+    const articleId = '12345';
+    const comment = 'This is a comment'
+    moxios.withMock(() => {
+
+    //  asyncActions.addComment(articleId)(dispatchMock);
+      const thunk = asyncActions.addComment(articleId, comment);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 200,
+          response: comment
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/articles/${articleId}/comments`);
+          expect(dispatchMock).toBeCalledWith(actions.addCommentRequest());
+          expect(dispatchMock).toBeCalledWith(actions.addCommentSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
 });

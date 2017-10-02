@@ -87,8 +87,17 @@ export const fetchArticleComments = (articleId) => {
 };
 
 // POST api/articles/:article_id/comments
-export const addComment = (comment) => {
-  return comment;
+export const addComment = (articleId, comment) => {
+  return dispatch => {
+    dispatch(actions.addCommentRequest());
+    return axios.post(`${ROOT}/articles/${articleId}/comments`, { comment })
+      .then(res => {
+        dispatch(actions.addCommentSuccess(res.data.comment));
+      })
+      .catch(err => {
+        dispatch(actions.addCommentError(err));
+      });
+  };
 };
 
 
