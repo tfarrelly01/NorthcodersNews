@@ -86,4 +86,9 @@ export const fetchArticleComments = (articleId) => {
   };
 };
 
+// POST api/articles/:article_id/comments
+export const addComment = (comment) => {
+  return comment;
+};
+
 

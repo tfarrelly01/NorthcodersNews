@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test Action Creators  Action Creator: addComment success action returns data passed 1`] = `
+Object {
+  "payload": "I am a comment",
+  "type": "ADD_COMMENT_SUCCESS",
+}
+`;
+
 exports[`Test Action Creators  Action Creator: fetchArticle success action returns data passed 1`] = `
 Object {
   "payload": Array [

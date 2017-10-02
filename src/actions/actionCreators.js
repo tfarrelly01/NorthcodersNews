@@ -120,4 +120,24 @@ export const fetchArticleCommentsError = (error) => {
   };
 };
 
+export const addCommentRequest = () => {
+  return {
+    type: types.ADD_COMMENT_REQUEST
+  };
+};
+
+export const addCommentSuccess = (comment) => {
+  return {
+    type: types.ADD_COMMENT_SUCCESS,
+    payload: comment
+  };
+};
+
+export const addCommentError = (error) => {
+  return {
+    type: types.ADD_COMMENT_ERROR,
+    payload: error
+  };
+};
+
 

@@ -6,6 +6,7 @@ const data = [
   'bar',
   'baz'
 ];
+const comment = 'I am a comment';
 const errMsg = 'ERROR - Error message';
 
 describe('Test Action Creators ', () => {
@@ -174,6 +175,34 @@ describe('Test Action Creators ', () => {
 
 		test('error action returns data passed', () => {
 			const test = actions.fetchArticleCommentsError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
+
+	describe('Action Creator: addComment', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.addComment).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.addCommentRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.addCommentSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.addCommentError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.addCommentSuccess(comment);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.addCommentError(errMsg);
       expect(test.payload).toEqual(errMsg);
 		});
 	});
