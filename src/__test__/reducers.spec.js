@@ -35,7 +35,7 @@ describe('REDUCER', () => {
 			expect(test.topics).toEqual([
 				{
 					title: 'Coding',
-					slug: 'coding',
+					slug: 'coding'
 				}
 			]);
 		});
@@ -67,7 +67,7 @@ describe('REDUCER', () => {
 				payload: [
 					{
 						title: 'Article Title',
-						description: 'Article Descriiption'
+						description: 'Article Description'
 					}
 				]
 			};
@@ -76,7 +76,7 @@ describe('REDUCER', () => {
 			expect(test.articles).toEqual([
 				{
 					title: 'Article Title',
-					description: 'Article Descriiption'
+					description: 'Article Description'
 				}
 			]);
 		});
@@ -134,5 +134,57 @@ describe('REDUCER', () => {
 		});
 	});
 
-});
+	describe('FETCH_TOPIC_ARTICLES actions reducer', () => {
+		test('action: FETCH_TOPIC_ARTICLES_REQUEST', () => {
+			const action = {
+				type: types.FETCH_TOPIC_ARTICLES_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
 
+		test('action: FETCH_TOPIC_ARTICLES_SUCCESS', () => {
+			const action = {
+				type: types.FETCH_TOPIC_ARTICLES_SUCCESS,
+				payload: [
+					{
+						_id: '59b8055c4aa8a6146505ef2f',
+						title: "What does Jose Mourinho's handwriting say about his personality?",
+						body:
+							"Jose Mourinho was at The O2 on Sunday night to watch Dominic Thiem in action against Novak Djokovic. Thiem took the first set before Djokovic fought back to claim the victory, but Manchester United's manager was clearly impressed with the Austrian's performance.",
+						created_by: 'tickle122',
+						belongs_to: 'football',
+						votes: 10,
+						__v: 0,
+						comments: 6
+					},
+					{
+						_id: '59b8055c4aa8a6146505ef30',
+						title: 'Who Will Manage Your Club in 2021?',
+						body:
+							'Managerial changes are too common in the modern day game. Already in the 16/17 season, we have seen 14 managers lose their job from the Premier League to League Two. Swansea’s Francesco Guidolin became the first top division manager to lose his job but already question marks are raised regarding the future of the likes of David Moyes and Mike Phelan.',
+						created_by: 'tickle122',
+						belongs_to: 'football',
+						votes: 8,
+						__v: 0,
+						comments: 6
+					}
+				]
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.articles).toEqual(action.payload);
+		});
+
+		test('action: FETCH_TOPIC_ARTICLES_ERROR', () => {
+			const action = {
+				type: types.FETCH_TOPIC_ARTICLES_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.articles).toEqual([]);
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
+});

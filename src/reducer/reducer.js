@@ -27,21 +27,27 @@ function reducer (prevState = INITIAL_STATE, action) {
     return newState;
   }
 
-  // FETCH ARTICLES
-  if (action.type === types.FETCH_ARTICLES_REQUEST) {
+  // FETCH ARTICLES AND FETCH TOPIC ARTICLES
+  if (action.type === types.FETCH_ARTICLES_REQUEST ||
+      action.type === types.FETCH_TOPIC_ARTICLES_REQUEST) 
+  {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
     return newState;
   }
 
-  if (action.type === types.FETCH_ARTICLES_SUCCESS) {
+  if (action.type === types.FETCH_ARTICLES_SUCCESS ||
+      action.type === types.FETCH_TOPIC_ARTICLES_SUCCESS) 
+  {
     const newState = Object.assign({}, prevState);
     newState.articles = action.payload;
     newState.loading = false;
     return newState;
   }
 
-  if (action.type === types.FETCH_ARTICLES_ERROR) {
+  if (action.type === types.FETCH_ARTICLES_ERROR ||
+      action.type === types.FETCH_TOPIC_ARTICLES_ERROR) 
+  {
     const newState = Object.assign({}, prevState);
     newState.error = action.payload;
     newState.articles = [];
