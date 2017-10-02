@@ -187,4 +187,45 @@ describe('REDUCER', () => {
 			expect(test.error).toEqual('ERROR - An error has occurred!');
 		});
 	});
+
+	describe('FETCH_ARTICLE actions reducer', () => {
+		test('action: FETCH_ARTICLE_REQUEST', () => {
+			const action = {
+				type: types.FETCH_ARTICLE_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
+
+		test('action: FETCH_ARTICLE_SUCCESS', () => {
+			const action = {
+				type: types.FETCH_ARTICLE_SUCCESS,
+				payload: {
+						_id: '59b8055c4aa8a6146505ef30',
+						title: 'Who Will Manage Your Club in 2021?',
+						body:
+							'Managerial changes are too common in the modern day game. Already in the 16/17 season, we have seen 14 managers lose their job from the Premier League to League Two. Swansea’s Francesco Guidolin became the first top division manager to lose his job but already question marks are raised regarding the future of the likes of David Moyes and Mike Phelan.',
+						created_by: 'tickle122',
+						belongs_to: 'football',
+						votes: 8,
+						__v: 0,
+						comments: 6
+					}
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.article).toEqual(action.payload);
+		});
+
+		test('action: FETCH_ARTICLE_ERROR', () => {
+			const action = {
+				type: types.FETCH_ARTICLE_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.article).toEqual({});
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
 });

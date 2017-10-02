@@ -7,7 +7,7 @@ Object {
     "bar",
     "baz",
   ],
-  "type": "FETCH_ARTICLES_SUCCESS",
+  "type": "FETCH_ARTICLE_SUCCESS",
 }
 `;
 
