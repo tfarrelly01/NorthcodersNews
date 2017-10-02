@@ -48,7 +48,7 @@ export const fetchUsers = () => {
 export const fetchTopicArticles = (topicSlug) => {
   return dispatch => {
     dispatch(actions.fetchTopicArticlesRequest());
-    axios.get(`${ROOT}/${topicSlug}/articles`)
+    axios.get(`${ROOT}/topics/${topicSlug}/articles`)
       .then(res => {
         dispatch(actions.fetchTopicArticlesSuccess(res.data.articles));
       })

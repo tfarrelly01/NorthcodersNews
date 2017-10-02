@@ -101,7 +101,7 @@ describe('Test Async Actions  ', () => {
           response: data
         })
         .then(() => {
-          expect(request.url).toEqual(`${ROOT}/${topicSlug}/articles`);
+          expect(request.url).toEqual(`${ROOT}/topics/${topicSlug}/articles`);
           expect(dispatchMock).toBeCalledWith(actions.fetchTopicArticlesRequest());
           expect(dispatchMock).toBeCalledWith(actions.fetchTopicArticlesSuccess());
           done();
