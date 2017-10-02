@@ -121,6 +121,29 @@ function reducer (prevState = INITIAL_STATE, action) {
     return newState;
   }
 
+    // ADD COMMENT TO ARTICLE
+  if (action.type === types.ADD_COMMENT_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.ADD_COMMENT_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.comments.push(action.payload);
+    newState.comment = action.payload;
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.ADD_COMMENT_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.comment = {}
+    newState.loading = false;
+    return newState;
+  }
+
   return prevState;
 }
 

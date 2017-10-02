@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   articles: [],
   article: {},
   comments: [],
+  comment: {},
   users: [],
   loading: false,
   error: null

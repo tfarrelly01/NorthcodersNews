@@ -87,7 +87,7 @@ ArticlePage.propTypes = {
   match: PropTypes.object.isRequired,
   users: PropTypes.object.isRequired,
   article: PropTypes.object.isRequired,
-  comments: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
