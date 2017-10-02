@@ -90,7 +90,7 @@ describe('Test Async Actions  ', () => {
     const topicSlug = 'food';
     moxios.withMock(() => {
 
-    //  asyncActions.fetchTopicArticles()(dispatchMock);
+    //  asyncActions.fetchTopicArticles(topicSlug)(dispatchMock);
       const thunk = asyncActions.fetchTopicArticles(topicSlug);
       thunk(dispatchMock);
       moxios.wait(() => {
@@ -104,6 +104,32 @@ describe('Test Async Actions  ', () => {
           expect(request.url).toEqual(`${ROOT}/topics/${topicSlug}/articles`);
           expect(dispatchMock).toBeCalledWith(actions.fetchTopicArticlesRequest());
           expect(dispatchMock).toBeCalledWith(actions.fetchTopicArticlesSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
+
+  test('Async Action: fetchArticle', (done) => {
+    const dispatchMock = jest.fn();
+    const articleId = '12345';
+    moxios.withMock(() => {
+
+    //  asyncActions.fetchArticle(articleId)(dispatchMock);
+      const thunk = asyncActions.fetchArticle(articleId);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 200,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/articles/${articleId}`);
+          expect(dispatchMock).toBeCalledWith(actions.fetchArticleRequest());
+          expect(dispatchMock).toBeCalledWith(actions.fetchArticleSuccess());
           done();
         })
         .catch(done.fail);

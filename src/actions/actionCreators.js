@@ -80,4 +80,23 @@ export const fetchTopicArticlesError = (error) => {
   };
 };
 
+export const fetchArticleRequest = () => {
+  return {
+    type: types.FETCH_ARTICLES_REQUEST
+  };
+};
+
+export const fetchArticleSuccess = (article) => {
+  return {
+    type: types.FETCH_ARTICLES_SUCCESS,
+    payload: article
+  };
+};
+
+export const fetchArticleError = (error) => {
+  return {
+    type: types.FETCH_ARTICLES_ERROR,
+    payload: error
+  };
+};
 

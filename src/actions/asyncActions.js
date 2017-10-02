@@ -57,3 +57,18 @@ export const fetchTopicArticles = (topicSlug) => {
       });
   };
 };
+
+// GET api/articles/:article_id
+export const fetchArticle = (articleId) => {
+  return dispatch => {
+    dispatch(actions.fetchArticleRequest());
+    axios.get(`${ROOT}/articles/${articleId}`)
+      .then(res => {
+        dispatch(actions.fetchArticleSuccess(res.data.article));
+      })
+      .catch(err => {
+        dispatch(actions.fetchArticleError(err));
+      });
+  };
+};
+
