@@ -17,7 +17,6 @@ const ArticleCard = (props) => (
       </div>
       <div className='media-content'>
         <div className='content'>
-          {console.log('props:',props)}
           <Link to={`/articles/${props.id}/comments`} className="title is-4">{props.title}</Link>
           <h5 className='title is-5'>By: {props.createdBy}</h5>
         </div>
