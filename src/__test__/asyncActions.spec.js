@@ -85,6 +85,32 @@ describe('Test Async Actions  ', () => {
     });
   });
 
+  test('Async Action: fetchUser', (done) => {
+    const dispatchMock = jest.fn();
+    const username = 'northcoder';
+    moxios.withMock(() => {
+
+    //  asyncActions.fetchUser(username)(dispatchMock);
+      const thunk = asyncActions.fetchUser(username);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 200,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/users/${username}`);
+          expect(dispatchMock).toBeCalledWith(actions.fetchUserRequest());
+          expect(dispatchMock).toBeCalledWith(actions.fetchUserSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
+
   test('Async Action: fetchTopicArticles', (done) => {
     const dispatchMock = jest.fn();
     const topicSlug = 'food';

@@ -77,6 +77,28 @@ function reducer (prevState = INITIAL_STATE, action) {
     return newState;
   }
 
+    // FETCH USER
+  if (action.type === types.FETCH_USER_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_USER_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.user = Object.assign({}, action.payload);
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.FETCH_USER_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.user = {};
+    newState.loading = false;
+    return newState;
+  }
+
   // FETCH ARTICLE
   if (action.type === types.FETCH_ARTICLE_REQUEST) {
     const newState = Object.assign({}, prevState);
@@ -132,9 +154,6 @@ function reducer (prevState = INITIAL_STATE, action) {
     const newState = Object.assign({}, prevState);
     newState.comments.push(action.payload);
     newState.comment = action.payload;
-console.log('action.payload:', action.payload);
-console.log('newState.comment:', newState.comment);
-console.log('newState.comments:', newState.comments);
     newState.loading = false;
     return newState;
   }

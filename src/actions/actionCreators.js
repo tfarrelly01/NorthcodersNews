@@ -60,6 +60,26 @@ export const fetchUsersError = (error) => {
   };
 };
 
+export const fetchUserRequest = () => {
+  return {
+    type: types.FETCH_USER_REQUEST
+  };
+};
+
+export const fetchUserSuccess = (user) => {
+  return {
+    type: types.FETCH_USER_SUCCESS,
+    payload: user
+  };
+};
+
+export const fetchUserError = (error) => {
+  return {
+    type: types.FETCH_USER_ERROR,
+    payload: error
+  };
+};
+
 export const fetchTopicArticlesRequest = () => {
   return {
     type: types.FETCH_TOPIC_ARTICLES_REQUEST

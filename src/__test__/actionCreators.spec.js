@@ -94,6 +94,34 @@ describe('Test Action Creators ', () => {
       expect(test.payload).toEqual(errMsg);
 		});
 	});	
+	
+	describe('Action Creator: fetchUser', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.fetchUser).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.fetchUserRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.fetchUserSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.fetchUserError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.fetchUserSuccess(data);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.fetchUserError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
 
 	describe('Action Creator: fetchTopicArticles', () => {
 		test('is a function', () => {

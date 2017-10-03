@@ -62,6 +62,17 @@ Object {
 }
 `;
 
+exports[`Test Action Creators  Action Creator: fetchUser success action returns data passed 1`] = `
+Object {
+  "payload": Array [
+    "foo",
+    "bar",
+    "baz",
+  ],
+  "type": "FETCH_USER_SUCCESS",
+}
+`;
+
 exports[`Test Action Creators  Action Creator: fetchUsers success action returns data passed 1`] = `
 Object {
   "payload": Array [

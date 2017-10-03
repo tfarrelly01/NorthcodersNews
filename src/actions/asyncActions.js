@@ -44,6 +44,20 @@ export const fetchUsers = () => {
   };
 };
 
+// GET api/users/:username
+export const fetchUser = (username) => {
+  return dispatch => {
+    dispatch(actions.fetchUserRequest());
+    axios.get(`${ROOT}/users/${username}`)
+      .then(res => {
+        dispatch(actions.fetchUserSuccess(res.data.user));
+      })
+      .catch(err => {
+        dispatch(actions.fetchUserError(err));
+      });
+  };
+};
+
 // GET api/topics/:topic_slug/articles
 export const fetchTopicArticles = (topicSlug) => {
   return dispatch => {
@@ -88,17 +102,12 @@ export const fetchArticleComments = (articleId) => {
 
 // POST api/articles/:article_id/comments
 export const addComment = (articleId, comment) => {
-console.log('addComment CALLED ');
-console.log('articleId:', articleId);
-console.log('comment:', comment);
   return dispatch => {
     dispatch(actions.addCommentRequest());
     console.log('AFTER addCommentRequest()')
     axios.post(`${ROOT}/articles/${articleId}/comments`, { body: comment })
       .then(res => {
         dispatch(actions.addCommentSuccess(res.data.comment));
-        console.log('res.data.comment:', res.data.comment);
-
       })
       .catch(err => {
         dispatch(actions.addCommentError(err));

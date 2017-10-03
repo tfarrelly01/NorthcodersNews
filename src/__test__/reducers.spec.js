@@ -134,6 +134,43 @@ describe('REDUCER', () => {
 		});
 	});
 
+	describe('FETCH_USER actions reducer', () => {
+		test('action: FETCH_USER_REQUEST', () => {
+			const action = {
+				type: types.FETCH_USER_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
+
+		test('action: FETCH_USER_SUCCESS', () => {
+			const action = {
+				type: types.FETCH_USER_SUCCESS,
+				payload: {
+					_id: '59d36fae0e393d4260beb0f7',
+					username: 'northcoder',
+					name: 'Awesome Northcoder',
+					avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200',
+					__v: 0
+				}
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.user).toEqual(action.payload);
+		});
+
+		test('action: FETCH_USER_ERROR', () => {
+			const action = {
+				type: types.FETCH_USER_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.user).toEqual({});
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
+
 	describe('FETCH_TOPIC_ARTICLES actions reducer', () => {
 		test('action: FETCH_TOPIC_ARTICLES_REQUEST', () => {
 			const action = {
@@ -293,7 +330,7 @@ describe('REDUCER', () => {
 		test('action: ADD_COMMENT_SUCCESS', () => {
 			const action = {
 				type: types.ADD_COMMENT_SUCCESS,
-				payload: 'This is a new comment' 
+				payload: 'This is a new comment'
 			};
 			const test = reducer(INITIAL_STATE, action);
 			expect(test.loading).toEqual(false);
@@ -311,5 +348,4 @@ describe('REDUCER', () => {
 			expect(test.error).toEqual('ERROR - An error has occurred!');
 		});
 	});
-
 });

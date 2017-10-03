@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   comments: [],
   comment: {},
   users: [],
+  user: {},
   loading: false,
   error: null
 };
