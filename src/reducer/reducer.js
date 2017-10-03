@@ -132,6 +132,9 @@ function reducer (prevState = INITIAL_STATE, action) {
     const newState = Object.assign({}, prevState);
     newState.comments.push(action.payload);
     newState.comment = action.payload;
+console.log('action.payload:', action.payload);
+console.log('newState.comment:', newState.comment);
+console.log('newState.comments:', newState.comments);
     newState.loading = false;
     return newState;
   }
