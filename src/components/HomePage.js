@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchUsers, fetchArticles } from '../actions/asyncActions';
-import ArticleCard from './ArticleCard';
+import ArticleList from './ArticleList';
 
 export class HomePage extends React.Component {
 	componentDidMount() {
@@ -11,24 +11,11 @@ export class HomePage extends React.Component {
 	}
 
 	render() {
-		return (
-  <div>
-    {this.props.articles.sort((a, b) => b.votes - a.votes)
-          .map(article => {
-            let userProfile = this.props.users.find(user => user.username === article.created_by);
-            return (
-              <ArticleCard
-                key={article._id}
-                id={article._id}
-                title={article.title}
-                createdBy={article.created_by}
-                votes={article.votes}
-                comments={article.comments}
-                avatarUrl={userProfile.avatar_url}
-              />
-            );
-				})}
-  </div>
+    return (
+      <ArticleList
+        articles={this.props.articles} 
+        users={this.props.users}
+      />
 		);
 	}
 }

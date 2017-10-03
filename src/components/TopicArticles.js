@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { fetchUsers, fetchTopicArticles } from '../actions/asyncActions';
-import ArticleCard from './ArticleCard';
+import ArticleList from './ArticleList';
 
 export class TopicArticles extends React.Component {
 	componentDidMount() {
+	console.log('TopicArticles:componentDidMount: this.props:',this.props)
 		this.props.fetchUsers();
 		this.props.fetchTopicArticles(this.props.match.params.topic_slug);
 	}
@@ -17,25 +18,12 @@ export class TopicArticles extends React.Component {
 	}
 
 	render() {
+		console.log('TopicArticles:render: this.props:',this.props)	
     return (
-      <div>
-        {this.props.articles.sort((a, b) => b.votes - a.votes)
-          .map(article => {
-            let userProfile = this.props.users.find(user => user.username === article.created_by);
-            return (
-              <ArticleCard
-                key={article._id}
-                id={article._id}
-                title={article.title}
-                createdBy={article.created_by}
-                votes={article.votes}
-                comments={article.comments}
-                avatarUrl={userProfile.avatar_url}
-              />
-            );
-          }
-				)}
-      </div>
+      <ArticleList
+        articles={this.props.articles} 
+        users={this.props.users}
+      />
 		);
 	}
 }
@@ -48,11 +36,11 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
+	return { 
 		fetchUsers: () => {
 			dispatch(fetchUsers());
-		},
-		fetchTopicArticles: id => {
+		}, 
+		fetchTopicArticles: (id) => {
 			dispatch(fetchTopicArticles(id));
 		}
 	};

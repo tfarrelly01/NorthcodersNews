@@ -18,8 +18,9 @@ export class ArticlePage extends React.Component {
   }
 
   componentDidMount() {
+    console.log('ArticlePage - this.props:', this.props);
     const articleId = this.props.match.params.article_id;
-    this.props.fetchUsers();
+//    this.props.fetchUsers();
     this.props.fetchArticle(articleId);
     this.props.fetchArticleComments(articleId);
   }
@@ -85,7 +86,7 @@ export class ArticlePage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    users: state.users,
+//    users: state.users,
     article: state.article,
     comments: state.comments
   };
@@ -93,9 +94,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchUsers: () => {
-      dispatch(actions.fetchUsers());
-    },
+//    fetchUsers: () => {
+//    dispatch(actions.fetchUsers());
+//    },
     fetchArticle: (id) => {
       dispatch(actions.fetchArticle(id));
     },
@@ -109,7 +110,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 ArticlePage.propTypes = {
-  fetchUsers: PropTypes.func.isRequired,
+//  fetchUsers: PropTypes.func.isRequired,
   fetchArticle: PropTypes.func.isRequired,
   fetchArticleComments: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
