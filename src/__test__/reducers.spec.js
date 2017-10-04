@@ -374,7 +374,6 @@ describe('REDUCER', () => {
 				payload: { body: 'This is a new comment' }
 			};
 			const test = reducer(INITIAL_STATE, action);
-console.log('test:', test);
 			expect(test.loading).toEqual(false);
 			expect(test.comment).toEqual(action.payload);
 		});

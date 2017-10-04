@@ -93,7 +93,6 @@ export const fetchArticleComments = (articleId) => {
     axios.get(`${ROOT}/articles/${articleId}/comments`)
       .then(res => {
         dispatch(actions.fetchArticleCommentsSuccess(res.data.comments));
-        console.log('res.data.comments:', res.data.comments);
       })
       .catch(err => {
         dispatch(actions.fetchArticleCommentsError(err));
