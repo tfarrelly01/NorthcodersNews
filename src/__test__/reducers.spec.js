@@ -359,6 +359,46 @@ describe('REDUCER', () => {
 		});
 	});
 
+	describe('COMMENT_VOTE actions reducer', () => {
+		test('action: COMMENT_VOTE_REQUEST', () => {
+			const action = {
+				type: types.COMMENT_VOTE_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
+
+		test('action: COMMENT_VOTE_SUCCESS', () => {
+			const action = {
+				type: types.COMMENT_VOTE_SUCCESS,
+				payload: {
+					_id: '59d36fae0e393d4260beb11f',
+					body:
+						'This is a comment.',
+					belongs_to: '59d36fae0e393d4260beb0fb',
+					__v: 0,
+					created_by: 'tickle100',
+					votes: 2,
+					created_at: 1506585690000
+				}
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.comment).toEqual(action.payload);
+		});
+
+		test('action: COMMENT_VOTE_ERROR', () => {
+			const action = {
+				type: types.COMMENT_VOTE_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.comment).toEqual({});
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
+
 	describe('ADD_COMMENT actions reducer', () => {
 		test('action: ADD_COMMENT_REQUEST', () => {
 			const action = {

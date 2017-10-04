@@ -172,6 +172,35 @@ function reducer (prevState = INITIAL_STATE, action) {
     return newState;
   }
 
+    // VOTE COMMENT UP/DOWN
+  if (action.type === types.COMMENT_VOTE_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.COMMENT_VOTE_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.comments = [...prevState.comments];
+    newState.comment = Object.assign({}, prevState.comment);
+    newState.comment = Object.assign({}, action.payload);
+
+    // find index of comment that was voted on and replace comment  at this index with updated aricle
+    let commentIndex = newState.comments.findIndex(comment => comment._id == newState.comment._id);
+    newState.comments[commentIndex] = newState.comment;
+
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.COMMENT_VOTE_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.comment = {};
+    newState.loading = false;
+    return newState;
+  }
+
     // ADD COMMENT TO ARTICLE
   if (action.type === types.ADD_COMMENT_REQUEST) {
     const newState = Object.assign({}, prevState);
