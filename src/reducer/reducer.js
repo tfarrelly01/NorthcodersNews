@@ -181,8 +181,11 @@ function reducer (prevState = INITIAL_STATE, action) {
 
   if (action.type === types.ADD_COMMENT_SUCCESS) {
     const newState = Object.assign({}, prevState);
+    newState.comments = [...prevState.comments];
+    newState.comment = Object.assign({}, prevState.comment);
+    newState.comment = Object.assign({}, action.payload);
+
     newState.comments.push(action.payload);
-    newState.comment = action.payload;
     newState.loading = false;
     return newState;
   }

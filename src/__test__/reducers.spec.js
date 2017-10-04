@@ -371,9 +371,10 @@ describe('REDUCER', () => {
 		test('action: ADD_COMMENT_SUCCESS', () => {
 			const action = {
 				type: types.ADD_COMMENT_SUCCESS,
-				payload: 'This is a new comment'
+				payload: { body: 'This is a new comment' }
 			};
 			const test = reducer(INITIAL_STATE, action);
+console.log('test:', test);
 			expect(test.loading).toEqual(false);
 			expect(test.comment).toEqual(action.payload);
 		});
