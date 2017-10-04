@@ -189,7 +189,6 @@ describe('Test Async Actions  ', () => {
     });
   });
 
-
   test('Async Action: articleVote', (done) => {
     const dispatchMock = jest.fn();
     const articleId = '12345';
@@ -210,6 +209,33 @@ describe('Test Async Actions  ', () => {
           expect(request.url).toEqual(`${ROOT}/articles/${articleId}/?vote=${vote}`);
           expect(dispatchMock).toBeCalledWith(actions.articleVoteRequest());
           expect(dispatchMock).toBeCalledWith(actions.articleVoteSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
+
+  test('Async Action: commentVote', (done) => {
+    const dispatchMock = jest.fn();
+    const commentId = '12345';
+    const vote = 'up';
+    moxios.withMock(() => {
+
+    //  asyncActions.commentVote(commentId, vote)(dispatchMock);
+      const thunk = asyncActions.commentVote(commentId, vote);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 201,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/comments/${commentId}/?vote=${vote}`);
+          expect(dispatchMock).toBeCalledWith(actions.commentVoteRequest());
+          expect(dispatchMock).toBeCalledWith(actions.commentVoteSuccess());
           done();
         })
         .catch(done.fail);

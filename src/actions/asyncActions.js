@@ -115,8 +115,17 @@ export const articleVote = (articleId, vote) => {
 };
 
 // PUT api/comments/:comment_id
-export const commentVote = (article_id) => {
-  return article_id;
+export const commentVote = (comment_id, vote) => {
+  return dispatch => {
+    dispatch(actions.commentVoteRequest());
+    axios.put(`${ROOT}/comments/${comment_id}/?vote=${vote}`)
+      .then(res => {
+        dispatch(actions.commentVoteSuccess(res.data.comment));
+      })
+      .catch(err => {
+        dispatch(actions.commentVoteError(err));
+      });
+  };
 };
 
 // POST api/articles/:article_id/comments
