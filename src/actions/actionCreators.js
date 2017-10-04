@@ -199,3 +199,23 @@ export const addCommentError = (error) => {
     payload: error
   };
 };
+
+export const deleteCommentRequest = () => {
+  return {
+    type: types.DELETE_COMMENT_REQUEST
+  };
+};
+
+export const deleteCommentSuccess = (comment) => {
+  return {
+    type: types.DELETE_COMMENT_SUCCESS,
+    payload: comment
+  };
+};
+
+export const deleteCommentError = (error) => {
+  return {
+    type: types.DELETE_COMMENT_ERROR,
+    payload: error
+  };
+};

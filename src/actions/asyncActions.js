@@ -142,4 +142,9 @@ export const addComment = (articleId, comment) => {
   };
 };
 
+// DELETE api/comments/:comment_id
+export const deleteComment = (comment_id) => {
+  return comment_id;
+};
+
 

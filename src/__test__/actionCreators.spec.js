@@ -290,5 +290,33 @@ describe('Test Action Creators ', () => {
       expect(test.payload).toEqual(errMsg);
 		});
 	});
-	
+
+	describe('Action Creator: deleteComment', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.deleteComment).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.deleteCommentRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.deleteCommentSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.deleteCommentError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.deleteCommentSuccess(comment);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.deleteCommentError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
+
 });

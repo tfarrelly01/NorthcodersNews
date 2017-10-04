@@ -29,6 +29,13 @@ Object {
 }
 `;
 
+exports[`Test Action Creators  Action Creator: deleteComment success action returns data passed 1`] = `
+Object {
+  "payload": "I am a comment",
+  "type": "DELETE_COMMENT_SUCCESS",
+}
+`;
+
 exports[`Test Action Creators  Action Creator: fetchArticle success action returns data passed 1`] = `
 Object {
   "payload": Array [
