@@ -140,6 +140,26 @@ export const fetchArticleCommentsError = (error) => {
   };
 };
 
+export function articleVoteRequest() {
+  return {
+    type: types.ARTICLE_VOTE_REQUEST,
+  };
+}
+
+export function articleVoteSuccess(article) {
+  return {
+    type: types.ARTICLE_VOTE_SUCCESS,
+    payload: article,
+  };
+}
+
+export function articleVoteError(error) {
+  return {
+    type: types.ARTICLE_VOTE_ERROR,
+    payload: error
+  };
+}
+
 export const addCommentRequest = () => {
   return {
     type: types.ADD_COMMENT_REQUEST

@@ -6,7 +6,6 @@ import ArticleList from './ArticleList';
 
 export class TopicArticles extends React.Component {
 	componentDidMount() {
-	console.log('TopicArticles:componentDidMount: this.props:',this.props)
 		this.props.fetchUsers();
 		this.props.fetchTopicArticles(this.props.match.params.topic_slug);
 	}
@@ -18,7 +17,6 @@ export class TopicArticles extends React.Component {
 	}
 
 	render() {
-		console.log('TopicArticles:render: this.props:',this.props)	
     return (
       <ArticleList
         articles={this.props.articles} 

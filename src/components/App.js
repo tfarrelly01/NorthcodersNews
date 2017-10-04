@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 // import 'bulma/css/bulma.css';
+// import 'font-awesome/css/font-awesome.css';
 import HomePage from './HomePage';
 import TopicArticles from './TopicArticles';
 import ArticlePage from './ArticlePage';

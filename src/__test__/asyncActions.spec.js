@@ -189,6 +189,34 @@ describe('Test Async Actions  ', () => {
     });
   });
 
+
+  test('Async Action: articleVote', (done) => {
+    const dispatchMock = jest.fn();
+    const articleId = '12345';
+    const vote = 'up';
+    moxios.withMock(() => {
+
+    //  asyncActions.articleVote(articleId, vote)(dispatchMock);
+      const thunk = asyncActions.articleVote(articleId, vote);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 201,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/articles/${articleId}/?vote=${vote}`);
+          expect(dispatchMock).toBeCalledWith(actions.articleVoteRequest());
+          expect(dispatchMock).toBeCalledWith(actions.articleVoteSuccess());
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
+
   test('Async Action: addComment', (done) => {
     const dispatchMock = jest.fn();
     const articleId = '12345';

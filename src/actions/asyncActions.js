@@ -93,9 +93,24 @@ export const fetchArticleComments = (articleId) => {
     axios.get(`${ROOT}/articles/${articleId}/comments`)
       .then(res => {
         dispatch(actions.fetchArticleCommentsSuccess(res.data.comments));
+        console.log('res.data.comments:', res.data.comments);
       })
       .catch(err => {
         dispatch(actions.fetchArticleCommentsError(err));
+      });
+  };
+};
+
+// PUT api/articles/:article_id
+export const articleVote = (articleId, vote) => {
+  return dispatch => {
+    dispatch(actions.articleVoteRequest());
+    axios.put(`${ROOT}/articles/${articleId}/?vote=${vote}`)
+      .then(res => {
+        dispatch(actions.articleVoteSuccess(res.data.article));
+      })
+      .catch(err => {
+        dispatch(actions.articleVoteError(err));
       });
   };
 };
@@ -104,7 +119,6 @@ export const fetchArticleComments = (articleId) => {
 export const addComment = (articleId, comment) => {
   return dispatch => {
     dispatch(actions.addCommentRequest());
-    console.log('AFTER addCommentRequest()')
     axios.post(`${ROOT}/articles/${articleId}/comments`, { body: comment })
       .then(res => {
         dispatch(actions.addCommentSuccess(res.data.comment));

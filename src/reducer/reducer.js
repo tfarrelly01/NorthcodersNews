@@ -143,6 +143,35 @@ function reducer (prevState = INITIAL_STATE, action) {
     return newState;
   }
 
+  // VOTE ARTICLE UP/DOWN
+  if (action.type === types.ARTICLE_VOTE_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.ARTICLE_VOTE_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    newState.articles = [...prevState.articles];
+    newState.article = Object.assign({}, prevState.article);
+    newState.article = Object.assign({}, action.payload);
+
+    // find index of article that was voted on and replace article  at this index with updated aricle
+    let articleIndex = newState.articles.findIndex(article => article._id == newState.article._id);
+    newState.articles[articleIndex] = newState.article;
+
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.ARTICLE_VOTE_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.article = {};
+    newState.loading = false;
+    return newState;
+  }
+
     // ADD COMMENT TO ARTICLE
   if (action.type === types.ADD_COMMENT_REQUEST) {
     const newState = Object.assign({}, prevState);

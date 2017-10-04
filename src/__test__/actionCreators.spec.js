@@ -207,6 +207,34 @@ describe('Test Action Creators ', () => {
 		});
 	});
 
+	describe('Action Creator: articleVote', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.articleVote).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.articleVoteRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.articleVoteSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.articleVoteError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.articleVoteSuccess(data);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.articleVoteError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
+
 	describe('Action Creator: addComment', () => {
 		test('is a function', () => {
 			expect(typeof asyncActions.addComment).toBe('function');
