@@ -114,6 +114,11 @@ export const articleVote = (articleId, vote) => {
   };
 };
 
+// PUT api/comments/:comment_id
+export const commentVote = (article_id) => {
+  return article_id;
+};
+
 // POST api/articles/:article_id/comments
 export const addComment = (articleId, comment) => {
   return dispatch => {

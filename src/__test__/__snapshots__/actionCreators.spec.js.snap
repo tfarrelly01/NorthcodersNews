@@ -18,6 +18,17 @@ Object {
 }
 `;
 
+exports[`Test Action Creators  Action Creator: commentVote success action returns data passed 1`] = `
+Object {
+  "payload": Array [
+    "foo",
+    "bar",
+    "baz",
+  ],
+  "type": "COMMENT_VOTE_SUCCESS",
+}
+`;
+
 exports[`Test Action Creators  Action Creator: fetchArticle success action returns data passed 1`] = `
 Object {
   "payload": Array [

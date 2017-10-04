@@ -149,13 +149,33 @@ export function articleVoteRequest() {
 export function articleVoteSuccess(article) {
   return {
     type: types.ARTICLE_VOTE_SUCCESS,
-    payload: article,
+    payload: article
   };
 }
 
 export function articleVoteError(error) {
   return {
     type: types.ARTICLE_VOTE_ERROR,
+    payload: error
+  };
+}
+
+export function commentVoteRequest() {
+  return {
+    type: types.COMMENT_VOTE_REQUEST,
+  };
+}
+
+export function commentVoteSuccess(comment) {
+  return {
+    type: types.COMMENT_VOTE_SUCCESS,
+    payload: comment
+  };
+}
+
+export function commentVoteError(error) {
+  return {
+    type: types.COMMENT_VOTE_ERROR,
     payload: error
   };
 }
@@ -179,5 +199,3 @@ export const addCommentError = (error) => {
     payload: error
   };
 };
-
-

@@ -235,6 +235,34 @@ describe('Test Action Creators ', () => {
 		});
 	});
 
+	describe('Action Creator: commentVote', () => {
+		test('is a function', () => {
+			expect(typeof asyncActions.commentVote).toBe('function');
+		});
+
+		test('request action returns an object', () => {
+			expect(typeof actions.commentVoteRequest()).toEqual('object');
+		});
+
+		test('success action returns an object', () => {
+			expect(typeof actions.commentVoteSuccess()).toEqual('object');
+		});
+
+		test('error action returns an object', () => {
+			expect(typeof actions.commentVoteError()).toEqual('object');
+		});
+
+		test('success action returns data passed', () => {
+			const test = actions.commentVoteSuccess(data);
+      expect(test).toMatchSnapshot();
+		});
+
+		test('error action returns data passed', () => {
+			const test = actions.commentVoteError(errMsg);
+      expect(test.payload).toEqual(errMsg);
+		});
+	});
+
 	describe('Action Creator: addComment', () => {
 		test('is a function', () => {
 			expect(typeof asyncActions.addComment).toBe('function');
@@ -262,4 +290,5 @@ describe('Test Action Creators ', () => {
       expect(test.payload).toEqual(errMsg);
 		});
 	});
+	
 });
