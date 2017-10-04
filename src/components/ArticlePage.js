@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../actions/asyncActions';
 
-import CommentCard from './CommentCard';
+import CommentList from './CommentList';
 import AddCommentForm from './AddCommentForm';
 
 export class ArticlePage extends React.Component {
@@ -57,25 +57,12 @@ export class ArticlePage extends React.Component {
               />
 
               <section className="box comment">
-                <div className="comment">
-                  {this.props.comments.sort((a, b) => b.votes - a.votes)
-                  .map(comment => {
-                    let userProfile = this.props.users.find(user => user.username === comment.created_by);
-                    return (
-                      <CommentCard
-                        key={comment._id}
-                        id={comment._id}
-                        body={comment.body}
-                        createdBy={comment.created_by}
-                        votes={comment.votes}
-                        createdAt={comment.created_at}
-                        avatarUrl={userProfile.avatar_url}
-
-                      />
-                    );
-                  })}
-                </div>
+                <CommentList 
+                  comments={this.props.comments} 
+                  users={this.props.users} 
+                />
               </section>
+
             </section>
           </div>
         </div>
