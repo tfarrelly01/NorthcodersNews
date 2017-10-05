@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 import INITIAL_STATE from './INITIAL_STATE';
 
-function reducer (prevState = INITIAL_STATE, action) {
+const reducer = (prevState = INITIAL_STATE, action) => {
 
   if (!action) return prevState;
 
@@ -186,7 +186,7 @@ function reducer (prevState = INITIAL_STATE, action) {
     newState.comment = Object.assign({}, action.payload);
 
     // find index of comment that was voted on and replace comment at this index with updated aricle
-    let commentIndex = newState.comments.findIndex(comment => comment._id == newState.comment._id);
+    let commentIndex = newState.comments.findIndex(comment => comment._id === newState.comment._id);
     newState.comments[commentIndex] = newState.comment;
 
     newState.loading = false;
@@ -223,6 +223,30 @@ function reducer (prevState = INITIAL_STATE, action) {
     const newState = Object.assign({}, prevState);
     newState.error = action.payload;
     newState.comment = {}
+    newState.loading = false;
+    return newState;
+  }
+
+    // DELETE COMMENT
+  if (action.type === types.DELETE_COMMENT_REQUEST) {
+    const newState = Object.assign({}, prevState);
+    newState.loading = true;
+    return newState;
+  }
+
+  if (action.type === types.DELETE_COMMENT_SUCCESS) {
+    const newState = Object.assign({}, prevState);
+    
+    // filter out deleted comment from newState.comments
+    newState.comments = prevState.comments.filter(comment => comment._id !== action.comment);
+    newState.loading = false;
+    return newState;
+  }
+
+  if (action.type === types.DELETE_COMMENT_ERROR) {
+    const newState = Object.assign({}, prevState);
+    newState.error = action.payload;
+    newState.comment = {};
     newState.loading = false;
     return newState;
   }
