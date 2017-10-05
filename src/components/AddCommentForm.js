@@ -2,21 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const AddCommentForm = props => (
-  <div>
+  <div className="media">
     <form className="media-content" onSubmit={props.submitHandler}>
-      <textarea
-        className="textarea"
-        placeholder="Post comment"
-        value={props.input}
-        onChange={props.inputHandler}
-      />
-      <button
-        className="button is-info"
-        type="submit"
-        value="post"
-      >
-      Post comment
-      </button>
+      <div className="field">
+        <p className="control">
+          <textarea
+            className="textarea"
+            placeholder="Post your comment"
+            value={props.input}
+            onChange={props.inputHandler}
+          />
+        </p>
+      </div>
+      <div className="field">
+        <p className="control">
+          <button
+            className="button is-info"
+            type="submit"
+            value="post"
+          >
+          Post comment
+          </button>
+        </p>
+      </div>
     </form>
   </div>
 );

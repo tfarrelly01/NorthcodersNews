@@ -3,29 +3,39 @@ import PropTypes from 'prop-types';
 
 const CommentCard = (props) => {
     return (
-      <section className="box">
-        <div className="columns">
+      <div className="box media">
+        <figure className="media-left">
+          <p className="image is-96x96">
+            <img src={props.avatarUrl} alt="User Avatar" />
+          </p>
+                  <section className="voteSection level-item has-text-centered">
+          <a className="is-danger is-small row"  >
+            <i className="fa fa-thumbs-up fa-2x" />
+          </a>
+          <span className="row tag is-medium bold">{props.votes}</span>
+          <a className="is-danger is-small row"  >
+            <i className="fa fa-thumbs-down fa-2x" />
+          </a>
+        </section>
+        </figure>
 
-          <div className="column is-2">
-            <div>
-              <img src={props.avatarUrl} alt="User Avatar" />
-            </div>
-
-          </div>
-
-          <div className="column is-8">
-            <section className="">
-              <p className="comment-body">{props.body}</p>
-            </section>
+        <div className="media-content">
+          <div className="content">
+            <p>{props.body}</p>
           </div>
         </div>
+        <div className="media-right">
+        <a className="btn btn-danger" href="#">
+  <i className="fa fa-trash-o fa-2x"></i> Delete</a>
 
-      </section>
+        </div>
+      </div>
     );
 }
 
 CommentCard.propTypes = {
   body: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
   avatarUrl: PropTypes.string.isRequired,
 };
 
