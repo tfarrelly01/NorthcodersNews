@@ -17,3 +17,4 @@ bundle.js.map
 
 # jest testing
 /coverage
+DEPLOYMENT.md
