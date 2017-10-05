@@ -185,7 +185,7 @@ function reducer (prevState = INITIAL_STATE, action) {
     newState.comment = Object.assign({}, prevState.comment);
     newState.comment = Object.assign({}, action.payload);
 
-    // find index of comment that was voted on and replace comment  at this index with updated aricle
+    // find index of comment that was voted on and replace comment at this index with updated aricle
     let commentIndex = newState.comments.findIndex(comment => comment._id == newState.comment._id);
     newState.comments[commentIndex] = newState.comment;
 

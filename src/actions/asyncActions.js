@@ -143,8 +143,18 @@ export const addComment = (articleId, comment) => {
 };
 
 // DELETE api/comments/:comment_id
-export const deleteComment = (comment_id) => {
-  return comment_id;
+export const deleteComment = (commentId) => {
+  return dispatch => {
+    dispatch(actions.deleteCommentRequest());
+    axios.delete(`${ROOT}/comments/${commentId}`)
+      .then(res => {
+        dispatch(actions.deleteCommentSuccess(commentId));
+        console.log('res.data', res.data);
+      })
+      .catch(err => {
+        dispatch(actions.deleteCommentError(err));
+      });
+  };
 };
 
 

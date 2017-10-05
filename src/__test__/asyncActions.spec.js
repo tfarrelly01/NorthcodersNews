@@ -256,7 +256,7 @@ describe('Test Async Actions  ', () => {
         const request = moxios.requests.mostRecent();
         request
         .respondWith({
-          status: 200,
+          status: 201,
           response: comment
         })
         .then(() => {
@@ -269,4 +269,31 @@ describe('Test Async Actions  ', () => {
       })
     });
   });
+
+  test('Async Action: deleteComment', (done) => {
+    const dispatchMock = jest.fn();
+    const commentId = '12345';
+    moxios.withMock(() => {
+
+    //  asyncActions.deleteComment(commentId)(dispatchMock);
+      const thunk = asyncActions.deleteComment(commentId);
+      thunk(dispatchMock);
+      moxios.wait(() => {
+        const request = moxios.requests.mostRecent();
+        request
+        .respondWith({
+          status: 200,
+          response: data
+        })
+        .then(() => {
+          expect(request.url).toEqual(`${ROOT}/comments/${commentId}`);
+          expect(dispatchMock).toBeCalledWith(actions.deleteCommentRequest());
+          expect(dispatchMock).toBeCalledWith(actions.deleteCommentSuccess(commentId));
+          done();
+        })
+        .catch(done.fail);
+      })
+    });
+  });
+
 });
