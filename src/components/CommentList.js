@@ -1,11 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { commentVote, deleteComment } from '../actions/asyncActions';
 import CommentCard from './CommentCard';
 
 export class CommentList extends React.Component {
+
   componentDidMount() {
-    console.log('componentDidMount-this.props', this.props);
+    console.log('CommentList:componentDidMount-this.props', this.props);
   }
+
 	render() {
     return (
       <div className="comment">
@@ -21,6 +25,8 @@ export class CommentList extends React.Component {
                 votes={comment.votes}
                 createdAt={comment.created_at}
                 avatarUrl={userProfile.avatar_url}
+                commentVote={this.props.commentVote}
+                deleteComment={this.props.deleteComment}
               />
             );
           })
@@ -30,9 +36,30 @@ export class CommentList extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+    article: state.article,
+    comments: state.comments
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    commentVote: (commentId, voteUpOrDown) => {
+      dispatch(commentVote(commentId, voteUpOrDown));
+    },
+    deleteComment: (commentId) => {
+      dispatch(deleteComment(commentId));
+    }
+  };
+}
+
 CommentList.propTypes = {
 	users: PropTypes.array.isRequired,
-	comments: PropTypes.array.isRequired
+	comments: PropTypes.array.isRequired,
+  commentVote: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired
 };
 
-export default CommentList;
+export default connect(mapStateToProps, mapDispatchToProps)(CommentList);

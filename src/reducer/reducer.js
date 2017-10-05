@@ -238,7 +238,7 @@ const reducer = (prevState = INITIAL_STATE, action) => {
     const newState = Object.assign({}, prevState);
     
     // filter out deleted comment from newState.comments
-    newState.comments = prevState.comments.filter(comment => comment._id !== action.comment);
+    newState.comments = prevState.comments.filter(comment => comment._id !== action.payload);
     newState.loading = false;
     return newState;
   }
