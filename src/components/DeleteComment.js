@@ -9,6 +9,10 @@ const DeleteComment = props => (
   </div>
 );
 
+DeleteComment.defaultProps = {
+  handleDelete: () => {}
+};
+
 DeleteComment.propTypes = {
 	handleDelete: PropTypes.func.isRequired
 };

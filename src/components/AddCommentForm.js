@@ -29,6 +29,13 @@ export const AddCommentForm = props => (
   </div>
 );
 
+
+AddCommentForm.defaultProps = {
+  submitHandler: () => {},
+  inputHandler: () => {},
+  input: ''
+};
+
 AddCommentForm.propTypes = {
   submitHandler: PropTypes.func.isRequired,
   inputHandler: PropTypes.func.isRequired,

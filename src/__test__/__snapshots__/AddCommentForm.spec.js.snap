@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddCommentForm Component AddCommentForm renders correctly 1`] = `<AddCommentForm />`;
+exports[`AddCommentForm Component AddCommentForm renders correctly 1`] = `
+<AddCommentForm
+  input=""
+  inputHandler={[Function]}
+  submitHandler={[Function]}
+/>
+`;

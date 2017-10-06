@@ -18,6 +18,12 @@ export const UserNotAuthorised = (props) => {
   );
 };
 
+
+UserNotAuthorised.defaultProps = {
+  displayMessage: false,
+  onClose: () => {}
+};
+
 UserNotAuthorised.propTypes = {
   displayMessage: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

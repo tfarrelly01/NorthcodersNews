@@ -24,6 +24,13 @@ const VoteUpOrDown = props => (
   </figure>
 );
 
+VoteUpOrDown.defaultProps = {
+  avatarUrl: '',
+  votes: 0,
+  handleVoteUp: () => {},
+  handleVoteDown: () => {}
+};
+
 VoteUpOrDown.propTypes = {
   avatarUrl: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,

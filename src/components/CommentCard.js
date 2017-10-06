@@ -75,6 +75,16 @@ export class CommentCard extends React.Component {
   }
 }
 
+CommentCard.defaultProps = {
+  body: '',
+  id: '',
+  votes: 0,
+  avatarUrl: '',
+  createdBy: '',
+  commentVote: () => {},
+  deleteComment: () => {},
+};
+
 CommentCard.propTypes = {
   body: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,

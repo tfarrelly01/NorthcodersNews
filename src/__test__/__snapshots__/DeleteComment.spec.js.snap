@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeleteComment Component DeleteComment renders correctly 1`] = `<DeleteComment />`;
+exports[`DeleteComment Component DeleteComment renders correctly 1`] = `
+<DeleteComment
+  handleDelete={[Function]}
+/>
+`;

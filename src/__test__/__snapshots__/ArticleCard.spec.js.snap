@@ -3,5 +3,11 @@
 exports[`ArticleCard Component ArticleCard renders correctly 1`] = `
 <ArticleCard
   articleVote={[Function]}
+  avatarUrl=""
+  comments={0}
+  createdBy=""
+  id=""
+  title=""
+  votes={0}
 />
 `;

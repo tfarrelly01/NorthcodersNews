@@ -83,8 +83,14 @@ const ArticleCard = props => (
 */
 
 ArticleCard.defaultProps = {
-  articleVote: function articleVote() {}
-}
+  id: '',
+  title: '',
+  createdBy: '',
+  votes: 0,
+  comments: 0,
+  avatarUrl: '',
+  articleVote: () => {}
+};
 
 ArticleCard.propTypes = {
   id: PropTypes.string.isRequired, 

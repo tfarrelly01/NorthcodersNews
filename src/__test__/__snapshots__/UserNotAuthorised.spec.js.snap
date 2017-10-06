@@ -1,3 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserNotAuthorised Component UserNotAuthorised renders correctly 1`] = `<UserNotAuthorised />`;
+exports[`UserNotAuthorised Component UserNotAuthorised renders correctly 1`] = `
+<UserNotAuthorised
+  displayMessage={false}
+  onClose={[Function]}
+/>
+`;

@@ -1,3 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VoteUpOrDown Component VoteUpOrDown renders correctly 1`] = `<VoteUpOrDown />`;
+exports[`VoteUpOrDown Component VoteUpOrDown renders correctly 1`] = `
+<VoteUpOrDown
+  avatarUrl=""
+  handleVoteDown={[Function]}
+  handleVoteUp={[Function]}
+  votes={0}
+/>
+`;

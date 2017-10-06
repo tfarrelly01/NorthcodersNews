@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CommentCard Component CommentCard renders correctly 1`] = `<CommentCard />`;
+exports[`CommentCard Component CommentCard renders correctly 1`] = `
+<CommentCard
+  avatarUrl=""
+  body=""
+  commentVote={[Function]}
+  createdBy=""
+  deleteComment={[Function]}
+  id=""
+  votes={0}
+/>
+`;
