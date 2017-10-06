@@ -2,8 +2,8 @@
 
 exports[`AddCommentForm Component AddCommentForm renders correctly 1`] = `
 <AddCommentForm
-  input=""
-  inputHandler={[Function]}
-  submitHandler={[Function]}
+  commentText=""
+  handleInput={[Function]}
+  handleSubmit={[Function]}
 />
 `;

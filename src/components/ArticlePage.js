@@ -5,16 +5,19 @@ import * as actions from '../actions/asyncActions';
 
 import CommentList from './CommentList';
 import AddCommentForm from './AddCommentForm';
+import VoteUpOrDown from './VoteUpOrDown';
 
 export class ArticlePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      commentTextInput: '',
+      commentText: '',
     };
 
-    this.inputHandler = this.inputHandler.bind(this);
-    this.submitHandler = this.submitHandler.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleVoteUp = this.handleVoteUp.bind(this);
+    this.handleVoteDown = this.handleVoteDown.bind(this);
   }
 
   componentDidMount() {
@@ -25,22 +28,40 @@ export class ArticlePage extends React.Component {
     this.props.fetchArticleComments(articleId);
   }
 
-  inputHandler(e) {
+  handleInput(e) {
     this.setState({
-      commentTextInput: e.target.value,
+      commentText: e.target.value,
     });
   }
 
-  submitHandler(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.addComment(this.props.match.params.article_id, this.state.commentTextInput);
-    this.setState({ commentTextInput: '' });
+    this.props.addComment(this.props.match.params.article_id, this.state.commentText);
+    this.setState({ commentText: '' });
+  }
+
+  handleVoteUp() {
+    this.props.articleVote(this.props.article._id, 'up');
+  }
+
+  handleVoteDown() {
+    this.props.articleVote(this.props.article._id, 'down');
   }
 
   render() {
     return (
       <section className="container box">
         <div className="columns">
+
+          <div className="column is-2">
+            <VoteUpOrDown 
+              id={this.props.article._id}
+              avatarUrl={this.props.users.avatarUrl}
+              votes={this.props.article.votes}
+              handleVoteUp={this.handleVoteUp}
+              handleVoteDown={this.handleVoteDown}
+            />
+          </div>
 
           <div className="column is-8">
             <section className="box">
@@ -51,9 +72,9 @@ export class ArticlePage extends React.Component {
 
             <section className="box">
               <AddCommentForm
-                inputHandler={this.inputHandler}
-                submitHandler={this.submitHandler}
-                input={this.state.commentTextInput}
+                handleInput={this.handleInput}
+                handleSubmit={this.handleSubmit}
+                commentText={this.state.commentText}
               />
 
               <section className="box comment">
@@ -71,7 +92,7 @@ export class ArticlePage extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   return {
     users: state.users,
     article: state.article,
@@ -79,16 +100,19 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => {
       dispatch(actions.fetchUsers());
     },
-    fetchArticle: (id) => {
-      dispatch(actions.fetchArticle(id));
+    fetchArticle: (articleId) => {
+      dispatch(actions.fetchArticle(articleId));
     },
-    fetchArticleComments: (id) => {
-      dispatch(actions.fetchArticleComments(id));
+    fetchArticleComments: (articleId) => {
+      dispatch(actions.fetchArticleComments(articleId));
+    },
+    articleVote: (articleId, vote) => {
+      dispatch(actions.articleVote(articleId, vote));
     },
     addComment: (articleId, comment) => {
       dispatch(actions.addComment(articleId, comment));
@@ -100,6 +124,7 @@ ArticlePage.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
   fetchArticle: PropTypes.func.isRequired,
   fetchArticleComments: PropTypes.func.isRequired,
+  articleVote: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   users: PropTypes.array.isRequired,

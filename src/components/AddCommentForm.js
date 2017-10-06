@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 export const AddCommentForm = props => (
   <div className="media">
-    <form className="media-content" onSubmit={props.submitHandler}>
+    <form className="media-content" onSubmit={props.handleSubmit}>
       <div className="field">
         <p className="control">
           <textarea
             className="textarea"
             placeholder="Post your comment"
-            value={props.input}
-            onChange={props.inputHandler}
+            value={props.commentText}
+            onChange={props.handleInput}
           />
         </p>
       </div>
@@ -31,15 +31,15 @@ export const AddCommentForm = props => (
 
 
 AddCommentForm.defaultProps = {
-  submitHandler: () => {},
-  inputHandler: () => {},
-  input: ''
+  handleSubmit: () => {},
+  handleInput: () => {},
+  commentText: ''
 };
 
 AddCommentForm.propTypes = {
-  submitHandler: PropTypes.func.isRequired,
-  inputHandler: PropTypes.func.isRequired,
-  input: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleInput: PropTypes.func.isRequired,
+  commentText: PropTypes.string.isRequired,
 };
 
 export default AddCommentForm;
