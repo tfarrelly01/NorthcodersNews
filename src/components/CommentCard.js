@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import UserNotAuthorised from './UserNotAuthorised';
 import DeleteComment from './DeleteComment';
+import VoteUpOrDown from './VoteUpOrDown';
+
 import { USERNAME } from '../../config';
 
 export class CommentCard extends React.Component {
@@ -41,27 +43,13 @@ export class CommentCard extends React.Component {
       );
     }
     return (
-      <div className="box media">
-        <figure className="media-left">
-          <p className="image is-96x96">
-            <img src={this.props.avatarUrl} alt="User Avatar" />
-          </p>
-          <section className="level-item has-text-centered ">
-            <a 
-              className="is-danger is-small row has-text-info" 
-              onClick={this.props.commentVote.bind(null, this.props.id, 'up')} 
-            >
-              <i className="fa fa-thumbs-up fa-2x" />
-            </a>
-            <span className="row tag is-medium bold">{this.props.votes}</span>
-            <a 
-              className="is-danger is-small row has-text-info" 
-              onClick={this.props.commentVote.bind(null, this.props.id, 'down')} 
-            >
-              <i className="fa fa-thumbs-down fa-2x" />
-            </a>
-          </section>
-        </figure>
+      <div className="media box">
+        <VoteUpOrDown 
+          id={this.props.id}
+          avatarUrl={this.props.avatarUrl}
+          votes={this.props.votes}
+          commentVote={this.props.commentVote}
+        />
 
         <div className="media-content">
           <div className="content">
