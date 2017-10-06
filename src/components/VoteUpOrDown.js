@@ -9,14 +9,14 @@ const VoteUpOrDown = props => (
     <section className="level-item has-text-centered ">
       <a 
         className="is-danger is-small row has-text-info" 
-        onClick={props.commentVote.bind(null, props.id, 'up')}
+        onClick={props.handleVoteUp}
       >
         <i className="fa fa-thumbs-up fa-2x" />
       </a>
       <span className="row tag is-medium bold">{props.votes}</span>
       <a 
         className="is-danger is-small row has-text-info" 
-        onClick={props.commentVote.bind(null, props.id, 'down')}
+        onClick={props.handleVoteDown}
       >
         <i className="fa fa-thumbs-down fa-2x" />
       </a>
@@ -26,9 +26,9 @@ const VoteUpOrDown = props => (
 
 VoteUpOrDown.propTypes = {
   avatarUrl: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
   votes: PropTypes.number.isRequired,
-	commentVote: PropTypes.func.isRequired
+	handleVoteUp: PropTypes.func.isRequired,
+  handleVoteDown: PropTypes.func.isRequired
 };
 
 export default VoteUpOrDown;

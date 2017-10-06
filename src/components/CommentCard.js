@@ -15,6 +15,8 @@ export class CommentCard extends React.Component {
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleMessageDisplay = this.toggleMessageDisplay.bind(this);
+    this.handleVoteUp = this.handleVoteUp.bind(this);
+    this.handleVoteDown = this.handleVoteDown.bind(this);
   }
 
   handleDelete() {
@@ -27,6 +29,14 @@ export class CommentCard extends React.Component {
       displayMessage: false,
     });
   }  
+
+  handleVoteUp() {
+    this.props.commentVote(this.props.id, 'up');
+  }
+
+  handleVoteDown() {
+    this.props.commentVote(this.props.id, 'down');
+  }
 
   render() {
     let contentToRender;
@@ -48,7 +58,8 @@ export class CommentCard extends React.Component {
           id={this.props.id}
           avatarUrl={this.props.avatarUrl}
           votes={this.props.votes}
-          commentVote={this.props.commentVote}
+          handleVoteUp={this.handleVoteUp}
+          handleVoteDown={this.handleVoteDown}
         />
 
         <div className="media-content">
