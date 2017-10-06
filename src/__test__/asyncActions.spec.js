@@ -288,7 +288,7 @@ describe('Test Async Actions  ', () => {
         .then(() => {
           expect(request.url).toEqual(`${ROOT}/comments/${commentId}`);
           expect(dispatchMock).toBeCalledWith(actions.deleteCommentRequest());
-          expect(dispatchMock).toBeCalledWith(actions.deleteCommentSuccess(commentId));
+          expect(dispatchMock).toBeCalledWith(actions.deleteCommentSuccess(commentId, data));
           done();
         })
         .catch(done.fail);

@@ -206,10 +206,11 @@ export const deleteCommentRequest = () => {
   };
 };
 
-export const deleteCommentSuccess = (comment) => {
+export const deleteCommentSuccess = (commentId, message) => {
   return {
     type: types.DELETE_COMMENT_SUCCESS,
-    payload: comment
+    commentId,
+    payload: message
   };
 };
 

@@ -373,8 +373,7 @@ describe('REDUCER', () => {
 				type: types.COMMENT_VOTE_SUCCESS,
 				payload: {
 					_id: '59d36fae0e393d4260beb11f',
-					body:
-						'This is a comment.',
+					body: 'This is a comment.',
 					belongs_to: '59d36fae0e393d4260beb0fb',
 					__v: 0,
 					created_by: 'tickle100',
@@ -421,6 +420,88 @@ describe('REDUCER', () => {
 		test('action: ADD_COMMENT_ERROR', () => {
 			const action = {
 				type: types.ADD_COMMENT_ERROR,
+				payload: 'ERROR - An error has occurred!'
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(false);
+			expect(test.comment).toEqual({});
+			expect(test.error).toEqual('ERROR - An error has occurred!');
+		});
+	});
+
+	describe('DELETE_COMMENT actions reducer', () => {
+		test('action: DELETE_COMMENT_REQUEST', () => {
+			const action = {
+				type: types.DELETE_COMMENT_REQUEST
+			};
+			const test = reducer(INITIAL_STATE, action);
+			expect(test.loading).toEqual(true);
+		});
+
+		test('action: DELETE_COMMENT_SUCCESS', () => {
+			const action = {
+				type: types.DELETE_COMMENT_SUCCESS,
+				commentId: 456,
+				payload: { message: 'Comment deleted!' }
+			};
+			const state = {
+				comments: [
+					{
+						_id: 123,
+						body: 'Comment 123',
+						created_by: 'cooljmessy',
+						votes: 3
+					},
+					{
+						_id: 456,
+						body: 'Comment 456',
+						created_by: 'northcoder',
+						votes: 1
+					},
+					{
+						_id: 789,
+						body: 'Comment 789',
+						created_by: 'johny',
+						votes: 10
+					},
+					{
+						_id: 1011,
+						body: 'Comment 1011',
+						created_by: 'northcoder',
+						votes: 0
+					}
+				],
+				loading: true,
+				error: null
+			};
+			const test = reducer(state, action);
+			expect(test.loading).toEqual(false);
+			expect(test.error).toEqual(null);	
+			expect(test.comments).toEqual([
+				{
+					_id: 123,
+					body: 'Comment 123',
+					created_by: 'cooljmessy',
+					votes: 3
+				},
+				{
+					_id: 789,
+					body: 'Comment 789',
+					created_by: 'johny',
+					votes: 10
+				},
+				{
+					_id: 1011,
+					body: 'Comment 1011',
+					created_by: 'northcoder',
+					votes: 0
+				}
+			]);	
+		});
+
+		test('action: DELETE_COMMENT_ERROR', () => {
+			const action = {
+				type: types.DELETE_COMMENT_ERROR,
 				payload: 'ERROR - An error has occurred!'
 			};
 			const test = reducer(INITIAL_STATE, action);
