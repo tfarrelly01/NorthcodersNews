@@ -149,7 +149,6 @@ export const deleteComment = (commentId) => {
     axios.delete(`${ROOT}/comments/${commentId}`)
       .then(res => {
         dispatch(actions.deleteCommentSuccess(commentId, res.data));
-// console.log('res.data:', res.data);
       })
       .catch(err => {
         dispatch(actions.deleteCommentError(err));
