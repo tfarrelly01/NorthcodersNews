@@ -27,6 +27,19 @@ export class CommentCard extends React.Component {
   }  
 
   render() {
+    let contentToRender;
+    if (!this.state.displayMessage) {
+      contentToRender = (
+        <p>{this.props.body}</p>
+      );
+    } else {
+      contentToRender = (
+        <UserNotAuthorised 
+          displayMessage={this.state.displayMessage} 
+          onClose={this.toggleMessageDisplay} 
+        />
+      );
+    }
     return (
       <div className="box media">
         <figure className="media-left">
@@ -52,16 +65,12 @@ export class CommentCard extends React.Component {
 
         <div className="media-content">
           <div className="content">
-            <p>{this.props.body}</p>
+            {contentToRender}
           </div>
         </div>
 
         <DeleteComment handleDelete={this.handleDelete} />
-        
-        <UserNotAuthorised 
-          displayMessage={this.state.displayMessage} 
-          onClose={this.toggleMessageDisplay} 
-        />
+
       </div>
     );
   }
