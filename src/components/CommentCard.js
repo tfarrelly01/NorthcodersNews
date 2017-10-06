@@ -1,24 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import UserNotAuthorised from './UserNotAuthorised';
+import DeleteComment from './DeleteComment';
+import { USERNAME } from '../../config';
 
-const CommentCard = (props) => {
+export class CommentCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      displayMessage: false,
+    };
+    this.handleDelete = this.handleDelete.bind(this);
+    this.toggleMessageDisplay = this.toggleMessageDisplay.bind(this);
+  }
+
+  handleDelete() {
+    if (this.props.createdBy === USERNAME) this.props.deleteComment(this.props.id);
+    else this.setState({ displayMessage: true });
+  }
+
+  toggleMessageDisplay() {
+    this.setState({
+      displayMessage: false,
+    });
+  }  
+
+  render() {
     return (
       <div className="box media">
         <figure className="media-left">
           <p className="image is-96x96">
-            <img src={props.avatarUrl} alt="User Avatar" />
+            <img src={this.props.avatarUrl} alt="User Avatar" />
           </p>
-          <section className="voteSection level-item has-text-centered ">
+          <section className="level-item has-text-centered ">
             <a 
               className="is-danger is-small row has-text-info" 
-              onClick={props.commentVote.bind(null, props.id, 'up')} 
+              onClick={this.props.commentVote.bind(null, this.props.id, 'up')} 
             >
               <i className="fa fa-thumbs-up fa-2x" />
             </a>
-            <span className="row tag is-medium bold">{props.votes}</span>
+            <span className="row tag is-medium bold">{this.props.votes}</span>
             <a 
               className="is-danger is-small row has-text-info" 
-              onClick={props.commentVote.bind(null, props.id, 'down')} 
+              onClick={this.props.commentVote.bind(null, this.props.id, 'down')} 
             >
               <i className="fa fa-thumbs-down fa-2x" />
             </a>
@@ -27,21 +52,19 @@ const CommentCard = (props) => {
 
         <div className="media-content">
           <div className="content">
-            <p>{props.body}</p>
+            <p>{this.props.body}</p>
           </div>
         </div>
 
-        <div className="media-right">
-          <a 
-            className="btn btn-danger has-text-danger" 
-            aria-label="Delete"
-            onClick={props.deleteComment.bind(null, props.id)} 
-          >
-            <i className="fa fa-trash-o fa-2x" aria-hidden="true" />
-          </a>
-        </div>
+        <DeleteComment handleDelete={this.handleDelete} />
+        
+        <UserNotAuthorised 
+          displayMessage={this.state.displayMessage} 
+          onClose={this.toggleMessageDisplay} 
+        />
       </div>
     );
+  }
 }
 
 CommentCard.propTypes = {
@@ -49,9 +72,9 @@ CommentCard.propTypes = {
   id: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   avatarUrl: PropTypes.string.isRequired,
+  createdBy: PropTypes.string.isRequired,
   commentVote: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired
 };
-
 
 export default CommentCard;
