@@ -6,7 +6,7 @@ import VoteUpOrDown from './VoteUpOrDown';
 
 import { USERNAME } from '../../config';
 
-export class CommentCard extends React.Component {
+class CommentCard extends React.Component {
   constructor(props) {
     super(props);
 

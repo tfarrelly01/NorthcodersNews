@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const AddCommentForm = props => (
+const AddCommentForm = props => (
   <div className="media">
     <form className="media-content" onSubmit={props.handleSubmit}>
       <div className="field">

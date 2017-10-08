@@ -1,35 +1,116 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { commentVote, deleteComment } from '../actions/asyncActions';
+import { 
+  fetchUser,
+  articleVote, 
+  addComment, 
+  commentVote, 
+  deleteComment } from '../actions/asyncActions';
 import CommentCard from './CommentCard';
+import AddCommentForm from './AddCommentForm';
+import VoteUpOrDown from './VoteUpOrDown';
 
-const CommentList = props => (
-  <div>
-    {props.comments.sort((a, b) => b.votes - a.votes)
-      .map(comment => {
-        let userProfile = props.users.find(user => user.username === comment.created_by);
-        return (
-          <CommentCard
-            key={comment._id}
-            id={comment._id}
-            body={comment.body}
-            createdBy={comment.created_by}
-            votes={comment.votes}
-            createdAt={comment.created_at}
-            avatarUrl={userProfile.avatar_url}
-            commentVote={props.commentVote}
-            deleteComment={props.deleteComment}
-          />
-        );
-      })
-    }
-  </div>
-);
+class CommentList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentText: '',
+    };
+    this.handleInput = this.handleInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleVoteUp = this.handleVoteUp.bind(this);
+    this.handleVoteDown = this.handleVoteDown.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.article.created_by !== nextProps.article.created_by)
+        this.props.fetchUser(nextProps.article.created_by);
+	}
+
+  handleInput(e) {
+    this.setState({
+      commentText: e.target.value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.addComment(this.props.article._id, this.state.commentText);
+    this.setState({ commentText: '' });
+  }
+
+  handleVoteUp() {
+    this.props.articleVote(this.props.article._id, 'up');
+  }
+
+  handleVoteDown() {
+    this.props.articleVote(this.props.article._id, 'down');
+  }
+  
+  render () {
+    return (
+      <section className="container box">
+        <div className="columns">
+
+          <div className="column is-2">
+
+            <VoteUpOrDown 
+              id={this.props.article._id}
+              votes={this.props.article.votes}
+              avatarUrl={this.props.user.avatar_url}
+              handleVoteUp={this.handleVoteUp}
+              handleVoteDown={this.handleVoteDown}
+            />
+          </div>
+
+          <div className="column is-8">
+            <section className="box">
+              <h1 className="title"><b>{this.props.article.title}</b></h1>
+              <h6 className="subtitle">Created by: {this.props.article.created_by}</h6>
+              <p className="">{this.props.article.body}</p>
+            </section>
+
+            <section className="box">
+              <AddCommentForm
+                handleInput={this.handleInput}
+                handleSubmit={this.handleSubmit}
+                commentText={this.state.commentText}
+              />
+
+              <section className="box comment">
+                {this.props.comments.sort((a, b) => b.votes - a.votes)
+                  .map(comment => {
+                    let userProfile = this.props.users.find(user => user.username === comment.created_by);
+                    return (
+                      <CommentCard
+                        key={comment._id}
+                        id={comment._id}
+                        body={comment.body}
+                        createdBy={comment.created_by}
+                        votes={comment.votes}
+                        createdAt={comment.created_at}
+                        avatarUrl={userProfile.avatar_url}
+                        commentVote={this.props.commentVote}
+                        deleteComment={this.props.deleteComment}
+                      />
+                    );
+                  })
+                }
+              </section>
+            </section>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
+}
 
 const mapStateToProps = (state) => {
   return {
     users: state.users,
+    user: state.user,
     article: state.article,
     comments: state.comments
   };
@@ -37,17 +118,33 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchUser: (username) => {
+      dispatch(fetchUser(username));
+    },
+    articleVote: (articleId, vote) => {
+      dispatch(articleVote(articleId, vote));
+    },
+    addComment: (articleId, comment) => {
+      dispatch(addComment(articleId, comment));
+    },
     commentVote: (commentId, voteUpOrDown) => {
       dispatch(commentVote(commentId, voteUpOrDown));
     },
     deleteComment: (commentId) => {
       dispatch(deleteComment(commentId));
-    }
+    },
   };
 }
 
 CommentList.propTypes = {
+  users: PropTypes.array.isRequired,
+  article: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 	comments: PropTypes.array.isRequired,
+  fetchUser: PropTypes.func.isRequired,
+  articleVote: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  commentVote: PropTypes.func.isRequired, 
   deleteComment: PropTypes.func.isRequired
 };
 
