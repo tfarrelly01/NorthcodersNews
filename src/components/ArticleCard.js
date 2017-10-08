@@ -1,44 +1,67 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { articleVote } from '../actions/asyncActions';
+import VoteUpOrDown from './VoteUpOrDown';
 
-const ArticleCard = props => (
-  <div className="box">
-    <article className="columns">
-      <span className="column is-2">
-        <div>
-          <img src={props.avatarUrl} alt="User Avatar" />
-        </div>
-        <section className="voteSection">
-          <a className="is-danger is-small" onClick={props.articleVote.bind(null, props.id, 'up')} >
-            <i className="fa fa-arrow-up row" />
-          </a>
-          <span className="row tag is-medium bold">{props.votes}</span>
-          <a className="is-danger is-small" onClick={props.articleVote.bind(null, props.id, 'down')} >
-            <i className="fa fa-arrow-down row" />
-          </a>
-        </section>
-      </span>
-      <div className="media-content">
-        <div className="content">
-          <Link to={`/articles/${props.id}/comments`} className="title is-3">{props.title}</Link>
-        </div>
-        <div>Created By: {props.createdBy}</div>
-        <div>Comments: {props.comments}</div>
+class ArticleCard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleVoteUp = this.handleVoteUp.bind(this);
+    this.handleVoteDown = this.handleVoteDown.bind(this);
+  }
+
+  handleVoteUp() {
+    this.props.articleVote(this.props.id, 'up');
+  }
+
+  handleVoteDown() {
+    this.props.articleVote(this.props.id, 'down');
+  }
+  
+  render () {
+    return (
+      <div className="box">
+        <article className="columns">
+          <span className="column is-2">
+            <VoteUpOrDown 
+              id={this.props.id}
+              votes={this.props.votes}
+              avatarUrl={this.props.avatarUrl}
+              handleVoteUp={this.handleVoteUp}
+              handleVoteDown={this.handleVoteDown}
+            />
+          </span>
+
+          <div className="media-content">
+            <div className="content">
+              <Link to={`/articles/${this.props.id}/comments`} className="title is-3">{this.props.title}</Link>
+            </div>
+            <div>Created By: {this.props.createdBy}</div>
+            <div>Comments: {this.props.comments}</div>
+          </div>
+        </article>
       </div>
-    </article>
-  </div>
-);
+    );
+  }
+}
 
-ArticleCard.defaultProps = {
-  id: '',
-  title: '',
-  createdBy: '',
-  votes: 0,
-  comments: 0,
-  avatarUrl: '',
-  articleVote: () => {}
-};
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+    articles:state.articles
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    articleVote: (articleId, vote) => {
+      dispatch(articleVote(articleId, vote));
+    }
+  };
+}
 
 ArticleCard.propTypes = {
   id: PropTypes.string.isRequired, 
@@ -47,7 +70,7 @@ ArticleCard.propTypes = {
   votes: PropTypes.number.isRequired,
   comments: PropTypes.number.isRequired,
   avatarUrl: PropTypes.string.isRequired,
-  articleVote: PropTypes.func
+  articleVote: PropTypes.func.isRequired
 };
 
-export default ArticleCard;
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleCard);
