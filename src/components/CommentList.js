@@ -52,9 +52,7 @@ class CommentList extends React.Component {
     return (
       <section className="container box">
         <div className="columns">
-
           <div className="column is-2">
-
             <VoteUpOrDown 
               id={this.props.article._id}
               votes={this.props.article.votes}
