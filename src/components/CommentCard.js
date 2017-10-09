@@ -42,7 +42,10 @@ class CommentCard extends React.Component {
     let contentToRender;
     if (!this.state.displayMessage) {
       contentToRender = (
-        <p>{this.props.body}</p>
+        <div>
+          <h6>By <strong>{this.props.name}</strong> ({this.props.createdBy})</h6>
+          <p>{this.props.body}</p>
+        </div>
       );
     } else {
       contentToRender = (
@@ -80,6 +83,7 @@ CommentCard.defaultProps = {
   id: '',
   votes: 0,
   avatarUrl: '',
+  name: '',
   createdBy: '',
   commentVote: () => {},
   deleteComment: () => {},
@@ -90,6 +94,7 @@ CommentCard.propTypes = {
   id: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   avatarUrl: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   createdBy: PropTypes.string.isRequired,
   commentVote: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired

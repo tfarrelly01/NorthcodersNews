@@ -67,7 +67,7 @@ class CommentList extends React.Component {
           <div className="column is-8">
             <section className="box">
               <h1 className="title"><b>{this.props.article.title}</b></h1>
-              <h6 className="subtitle">Created by: {this.props.article.created_by}</h6>
+              <h6 className="subtitle">Created by <strong>{this.props.user.name}</strong> ({this.props.article.created_by})</h6>
               <p className="">{this.props.article.body}</p>
             </section>
 
@@ -91,6 +91,7 @@ class CommentList extends React.Component {
                         votes={comment.votes}
                         createdAt={comment.created_at}
                         avatarUrl={userProfile.avatar_url}
+                        name={userProfile.name}
                         commentVote={this.props.commentVote}
                         deleteComment={this.props.deleteComment}
                       />

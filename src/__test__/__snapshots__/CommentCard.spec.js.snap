@@ -8,6 +8,7 @@ exports[`CommentCard Component CommentCard renders correctly 1`] = `
   createdBy=""
   deleteComment={[Function]}
   id=""
+  name=""
   votes={0}
 />
 `;

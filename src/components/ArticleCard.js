@@ -39,7 +39,7 @@ class ArticleCard extends React.Component {
             <div className="content">
               <Link to={`/articles/${this.props.id}/comments`} className="title is-3">{this.props.title}</Link>
             </div>
-            <div>Created By: {this.props.createdBy}</div>
+            <h5>Created By <strong>{this.props.name}</strong> ({this.props.createdBy})</h5>
             <div>Comments: {this.props.comments}</div>
           </div>
         </article>
@@ -66,9 +66,10 @@ const mapDispatchToProps = (dispatch) => {
 ArticleCard.propTypes = {
   id: PropTypes.string.isRequired, 
   title: PropTypes.string.isRequired,
-  createdBy: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   comments: PropTypes.number.isRequired,
+  createdBy: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string.isRequired,
   articleVote: PropTypes.func.isRequired
 };
