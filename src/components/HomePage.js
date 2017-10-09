@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { fetchUsers, fetchArticles } from '../actions/asyncActions';
 import ArticleList from './ArticleList';
 
-export class HomePage extends React.Component {
+class HomePage extends React.Component {
 	componentDidMount() {
 		this.props.fetchUsers();
 		this.props.fetchArticles();
@@ -20,14 +20,14 @@ export class HomePage extends React.Component {
 	}
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
 	return {
 		users: state.users,
 		articles: state.articles
 	};
 }
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchUsers: () => {
 			dispatch(fetchUsers());
