@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const UserNotAuthorised = (props) => {
+const UserNotAuthorised = (props) => {
   if (!props.displayMessage) {
     return null;
   }
@@ -17,7 +17,6 @@ export const UserNotAuthorised = (props) => {
     </article>
   );
 };
-
 
 UserNotAuthorised.defaultProps = {
   displayMessage: false,
