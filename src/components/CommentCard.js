@@ -83,6 +83,7 @@ CommentCard.defaultProps = {
   body: '',
   id: '',
   votes: 0,
+  createdAt: 0,
   avatarUrl: '',
   name: '',
   createdBy: '',

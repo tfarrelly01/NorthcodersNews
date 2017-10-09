@@ -5,6 +5,7 @@ exports[`CommentCard Component CommentCard renders correctly 1`] = `
   avatarUrl=""
   body=""
   commentVote={[Function]}
+  createdAt={0}
   createdBy=""
   deleteComment={[Function]}
   id=""
