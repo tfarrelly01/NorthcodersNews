@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const VoteUpOrDown = props => (
-  <figure className="media-left">
-    <p className="image is-96x96">
+  <figure className="media-left has-text-centered">
+    <p className="image is-96x96 has-text-centered">
       <img src={props.avatarUrl} alt="User Avatar" />
     </p>
     <section className="level-item has-text-centered ">
       <a 
-        className="is-danger is-small row has-text-info" 
+        className="is-danger is-small row has-text-success" 
         onClick={props.handleVoteUp}
       >
         <i className="fa fa-thumbs-up fa-2x" />
       </a>
       <span className="row tag is-medium bold">{props.votes}</span>
       <a 
-        className="is-danger is-small row has-text-info" 
+        className="is-danger is-small row has-text-danger" 
         onClick={props.handleVoteDown}
       >
         <i className="fa fa-thumbs-down fa-2x" />

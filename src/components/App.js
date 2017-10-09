@@ -8,6 +8,7 @@ import TopicArticles from './TopicArticles';
 import ArticlePage from './ArticlePage';
 import FourOhFour from './FourOhFour';
 import TopicHeadings from './TopicHeadings';
+import Footer from './Footer';
 
 const history = createBrowserHistory();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route component={FourOhFour} />
         </Switch>
       </div>
+      <Footer />
     </div>
   </Router>
 );
