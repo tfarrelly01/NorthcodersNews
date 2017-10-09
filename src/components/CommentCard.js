@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import UserNotAuthorised from './UserNotAuthorised';
 import DeleteComment from './DeleteComment';
 import VoteUpOrDown from './VoteUpOrDown';
@@ -43,7 +44,7 @@ class CommentCard extends React.Component {
     if (!this.state.displayMessage) {
       contentToRender = (
         <div>
-          <h6>By <strong>{this.props.name}</strong> ({this.props.createdBy})</h6>
+          <h6>By <strong>{this.props.name}</strong> ({this.props.createdBy}): <strong>{moment(this.props.createdAt-1).fromNow()}</strong></h6>
           <p>{this.props.body}</p>
         </div>
       );
@@ -93,6 +94,7 @@ CommentCard.propTypes = {
   body: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
+  createdAt: PropTypes.number.isRequired,
   avatarUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   createdBy: PropTypes.string.isRequired,
