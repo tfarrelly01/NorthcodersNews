@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import 'bulma/css/bulma.css';
 import { fetchTopics } from '../actions/asyncActions';
 
-export class TopicHeadings extends React.Component {
+class TopicHeadings extends React.Component {
 	componentDidMount() {
 		this.props.fetchTopics();
 	}
@@ -28,19 +27,19 @@ export class TopicHeadings extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
 	return {
 		topics: state.topics
 	};
-}
+};
 
-function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchTopics: () => {
 			dispatch(fetchTopics());
 		}
 	};
-}
+};
 
 TopicHeadings.propTypes = {
 	topics: PropTypes.array.isRequired,
