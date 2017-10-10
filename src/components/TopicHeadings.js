@@ -18,13 +18,14 @@ class TopicHeadings extends React.Component {
               <span>Home</span>
             </a>
           </Link>              
-          {this.props.topics.map(topic => (
-            <Link className="navbar-item" key={topic._id} to={`/topics/${topic.slug}/articles`}>
-              <a className="button is-danger is-bold title is-4">
-                <span>{topic.title}</span>
-              </a>
-            </Link>
-          ))}
+          {this.props.topics.sort((a,b) => a.title > b.title ? 1 : -1) 
+            .map(topic => (
+              <Link className="navbar-item" key={topic._id} to={`/topics/${topic.slug}/articles`}>
+                <a className="button is-danger is-bold title is-4">
+                  <span>{topic.title}</span>
+                </a>
+              </Link>
+            ))}
         </div>
       </nav>
     );
