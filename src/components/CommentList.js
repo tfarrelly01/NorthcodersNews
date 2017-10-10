@@ -50,60 +50,69 @@ class CommentList extends React.Component {
   
   render () {
     return (
-      <section className="container box">
-        <div className="columns">
-          <div className="column is-2">
-            <VoteUpOrDown 
-              id={this.props.article._id}
-              votes={this.props.article.votes}
-              avatarUrl={this.props.user.avatar_url}
-              handleVoteUp={this.handleVoteUp}
-              handleVoteDown={this.handleVoteDown}
-            />
-          </div>
+      <div className="container">
+        <div className="box">
+          <article className="media">
+            <div className="media-left">
+              <span>
+                <VoteUpOrDown 
+                  id={this.props.article._id}
+                  votes={this.props.article.votes}
+                  avatarUrl={this.props.user.avatar_url}
+                  handleVoteUp={this.handleVoteUp}
+                  handleVoteDown={this.handleVoteDown}
+                />
+              </span>
+            </div>
 
-          <div className="column is-8">
-            <section className="box">
-              <h1 className="title"><b>{this.props.article.title}</b></h1>
-              <h6 className="subtitle">Created by <strong>{this.props.user.name}</strong> ({this.props.article.created_by})</h6>
-              <p className="">{this.props.article.body}</p>
+            <section>
+              <div className="media-content">
+                <div className="content">
+                  <h1 className="title is-3"><b>{this.props.article.title}</b></h1>
+                </div>
+                <h5 className="subtitle is-5">
+                  Created by <strong>{this.props.user.name}</strong> ({this.props.article.created_by})
+                </h5>
+                <div className="content is-medium">
+                  <p>{this.props.article.body}</p>
+                </div>
+              </div>
             </section>
-
-            <section className="box">
-              <AddCommentForm
-                handleInput={this.handleInput}
-                handleSubmit={this.handleSubmit}
-                commentText={this.state.commentText}
-              />
-
-              <section className="box comment">
-                {this.props.comments.sort((a, b) => b.votes - a.votes)
-                  .map(comment => {
-                    let userProfile = this.props.users.find(user => user.username === comment.created_by);
-                    return (
-                      <CommentCard
-                        key={comment._id}
-                        id={comment._id}
-                        body={comment.body}
-                        createdBy={comment.created_by}
-                        votes={comment.votes}
-                        createdAt={comment.created_at}
-                        avatarUrl={userProfile.avatar_url}
-                        name={userProfile.name}
-                        commentVote={this.props.commentVote}
-                        deleteComment={this.props.deleteComment}
-                      />
-                    );
-                  })
-                }
-              </section>
-            </section>
-          </div>
+          </article>
         </div>
-      </section>
+
+        <section className="box">
+          <AddCommentForm
+            handleInput={this.handleInput}
+            handleSubmit={this.handleSubmit}
+            commentText={this.state.commentText}
+          />
+        </section>
+
+        <section className="box">
+          {this.props.comments.sort((a, b) => b.votes - a.votes)
+            .map(comment => {
+              let userProfile = this.props.users.find(user => user.username === comment.created_by);
+              return (
+                <CommentCard
+                  key={comment._id}
+                  id={comment._id}
+                  body={comment.body}
+                  createdBy={comment.created_by}
+                  votes={comment.votes}
+                  createdAt={comment.created_at}
+                  avatarUrl={userProfile.avatar_url}
+                  name={userProfile.name}
+                  commentVote={this.props.commentVote}
+                  deleteComment={this.props.deleteComment}
+                />
+              );
+            })
+          }
+        </section>
+      </div>
     );
   }
-  
 }
 
 const mapStateToProps = (state) => {
