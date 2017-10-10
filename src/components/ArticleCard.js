@@ -23,24 +23,25 @@ class ArticleCard extends React.Component {
   
   render () {
     return (
-      <div className="box">
-        <article className="columns">
-          <span className="column is-2">
-            <VoteUpOrDown 
-              id={this.props.id}
-              votes={this.props.votes}
-              avatarUrl={this.props.avatarUrl}
-              handleVoteUp={this.handleVoteUp}
-              handleVoteDown={this.handleVoteDown}
-            />
-          </span>
-
+      <div className="container box">
+        <article className="media">
+          <div className="media-left">
+            <span>
+              <VoteUpOrDown 
+                id={this.props.id}
+                votes={this.props.votes}
+                avatarUrl={this.props.avatarUrl}
+                handleVoteUp={this.handleVoteUp}
+                handleVoteDown={this.handleVoteDown}
+              />              
+            </span>
+          </div>
           <div className="media-content">
             <div className="content">
-              <Link to={`/articles/${this.props.id}/comments`} className="title is-3">{this.props.title}</Link>
+              <Link to={`/articles/${this.props.id}/comments`} className="title is-4">{this.props.title}</Link>
             </div>
-            <h5>Created By <strong>{this.props.name}</strong> ({this.props.createdBy})</h5>
-            <div>Comments: {this.props.comments}</div>
+            <h5>Created by: <strong>{this.props.name}</strong> ({this.props.createdBy})</h5>
+            <h5>Comments: {this.props.comments}</h5>
           </div>
         </article>
       </div>

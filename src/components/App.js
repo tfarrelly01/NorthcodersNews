@@ -10,6 +10,7 @@ import FourOhFour from './FourOhFour';
 import TopicHeadings from './TopicHeadings';
 import Header from './Header';
 import Footer from './Footer';
+import '../css/style.css';
 
 const history = createBrowserHistory();
 
@@ -17,7 +18,7 @@ const App = () => (
   <Router history={history}>
     <div className="app">
       <Header />
-      <div className="topic-header">
+      <div>
         <TopicHeadings />
       </div>
       <div>

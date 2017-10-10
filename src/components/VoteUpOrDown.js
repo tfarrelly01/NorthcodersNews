@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const VoteUpOrDown = props => (
-  <figure className="media-left has-text-centered">
+  <figure>
     <p className="image is-96x96 has-text-centered">
       <img src={props.avatarUrl} alt="User Avatar" />
     </p>
