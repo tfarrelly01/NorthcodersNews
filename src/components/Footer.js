@@ -12,7 +12,7 @@ const footer = () => (
         </p>
         <p>
           <a className="icon" href="https://github.com/tfarrelly01">
-            <i className="fa fa-github" />
+            <i className="fa fa-github fa-2x" />
           </a>
         </p>
       </div>

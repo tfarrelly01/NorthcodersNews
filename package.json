@@ -30,7 +30,7 @@
   "homepage": "https://github.com/tfarrelly01/NorthcodersNews#readme",
   "dependencies": {
     "axios": "^0.16.2",
-    "bulma": "^0.4.3",
+    "bulma": "^0.5.3",
     "cors": "^2.8.4",
     "css-loader": "^0.28.7",
     "file-loader": "^0.11.2",

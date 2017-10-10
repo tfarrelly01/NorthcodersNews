@@ -8,6 +8,7 @@ import TopicArticles from './TopicArticles';
 import ArticlePage from './ArticlePage';
 import FourOhFour from './FourOhFour';
 import TopicHeadings from './TopicHeadings';
+import Header from './Header';
 import Footer from './Footer';
 
 const history = createBrowserHistory();
@@ -15,6 +16,7 @@ const history = createBrowserHistory();
 const App = () => (
   <Router history={history}>
     <div className="app">
+      <Header />
       <div className="topic-header">
         <TopicHeadings />
       </div>

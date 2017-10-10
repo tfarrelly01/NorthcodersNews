@@ -11,14 +11,14 @@ const VoteUpOrDown = props => (
         className="is-danger is-small row has-text-success" 
         onClick={props.handleVoteUp}
       >
-        <i className="fa fa-thumbs-up fa-2x" />
+        <i className="fa fa-thumbs-o-up fa-2x" />
       </a>
       <span className="row tag is-medium bold">{props.votes}</span>
       <a 
         className="is-danger is-small row has-text-danger" 
         onClick={props.handleVoteDown}
       >
-        <i className="fa fa-thumbs-down fa-2x" />
+        <i className="fa fa-thumbs-o-down fa-2x" />
       </a>
     </section>
   </figure>

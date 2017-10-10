@@ -11,18 +11,22 @@ class TopicHeadings extends React.Component {
 
   render() {
     return (
-      <div>
-        <nav className="level">
-          <Link to={'/'}>
-              All
-          </Link>
+      <nav className="navbar is-danger is-bold level">
+        <div className="level-item">
+          <Link className="navbar-item" to={'/'}>
+            <a className="button is-danger is-bold title is-4">
+              <span>Home</span>
+            </a>
+          </Link>              
           {this.props.topics.map(topic => (
-            <Link key={topic._id} to={`/topics/${topic.slug}/articles`}>
-              {topic.title}
+            <Link className="navbar-item" key={topic._id} to={`/topics/${topic.slug}/articles`}>
+              <a className="button is-danger is-bold title is-4">
+                <span>{topic.title}</span>
+              </a>
             </Link>
           ))}
-        </nav>
-      </div>
+        </div>
+      </nav>
     );
   }
 }
