@@ -44,8 +44,13 @@ class CommentCard extends React.Component {
     if (!this.state.displayMessage) {
       contentToRender = (
         <div>
-          <h6>By <strong>{this.props.name}</strong> ({this.props.createdBy}): <strong>{moment(this.props.createdAt-1).fromNow()}</strong></h6>
-          <p>{this.props.body}</p>
+          <h6 className="subtitle is-5">
+            By <strong>{this.props.name}</strong> 
+            ({this.props.createdBy}): <strong>{moment(this.props.createdAt-1).fromNow()}</strong>
+          </h6>
+          <div className="content is-medium">
+            <p>{this.props.body}</p>
+          </div>
         </div>
       );
     } else {
@@ -57,23 +62,29 @@ class CommentCard extends React.Component {
       );
     }
     return (
-      <div className="media box">
-        <VoteUpOrDown 
-          id={this.props.id}
-          avatarUrl={this.props.avatarUrl}
-          votes={this.props.votes}
-          handleVoteUp={this.handleVoteUp}
-          handleVoteDown={this.handleVoteDown}
-        />
+      <div className="container">
+        <div className="box">
+          <article className="media">
+            <div className="media-left">
+              <span>
+                <VoteUpOrDown 
+                  id={this.props.id}
+                  avatarUrl={this.props.avatarUrl}
+                  votes={this.props.votes}
+                  handleVoteUp={this.handleVoteUp}
+                  handleVoteDown={this.handleVoteDown}
+                />
+              </span>
+            </div>
 
-        <div className="media-content">
-          <div className="content">
-            {contentToRender}
-          </div>
+            <div className="media-content">
+              <div className="content">
+                {contentToRender}
+              </div>
+            </div>
+            <DeleteComment handleDelete={this.handleDelete} />
+          </article>
         </div>
-
-        <DeleteComment handleDelete={this.handleDelete} />
-
       </div>
     );
   }

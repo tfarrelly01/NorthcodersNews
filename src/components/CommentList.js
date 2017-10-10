@@ -89,7 +89,7 @@ class CommentList extends React.Component {
           />
         </section>
 
-        <section className="box">
+        <section>
           {this.props.comments.sort((a, b) => b.votes - a.votes)
             .map(comment => {
               let userProfile = this.props.users.find(user => user.username === comment.created_by);

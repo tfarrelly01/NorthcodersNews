@@ -9,14 +9,14 @@ const Header = () => (
             className="title"
             src={"https://northcoders.com/images/logos/learn_to_code_manchester_rw_second.png"}
             alt="Northcoders logo"
-            width="448" 
-            height="112"
+            width="672" 
+            height="168"
           />
         </a>
-        <p className="title">
+        <p className="title is-1">
           News Forum
         </p>
-        <p className="subtitle">
+        <p className="subtitle is-3">
             Get what&#39;s <strong>new</strong> and <strong>popular</strong> on the internet.
         </p>
       </div>
