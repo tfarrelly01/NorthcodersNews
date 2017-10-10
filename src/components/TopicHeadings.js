@@ -11,17 +11,19 @@ class TopicHeadings extends React.Component {
 
   render() {
     return (
-      <nav className="navbar is-danger is-bold level">
-        <div className="level-item">
-          <Link className="navbar-item button is-danger is-bold title is-4" to={'/'}>
-            Home
-          </Link>              
-          {this.props.topics.sort((a,b) => a.title > b.title ? 1 : -1) 
-            .map(topic => (
-              <Link className="navbar-item button is-danger is-bold title is-4" key={topic._id} to={`/topics/${topic.slug}/articles`}>
-                {topic.title}
-              </Link>
-            ))}
+      <nav className="navbar is-danger is-bold">
+        <div className="container">
+          <div className="level-item">
+            <Link className="navbar-item button is-danger is-bold title is-4" to={'/'}>
+              Home
+            </Link>              
+            {this.props.topics.sort((a,b) => a.title > b.title ? 1 : -1) 
+              .map(topic => (
+                <Link className="navbar-item button is-danger is-bold title is-4" key={topic._id} to={`/topics/${topic.slug}/articles`}>
+                  {topic.title}
+                </Link>
+              ))}
+          </div>
         </div>
       </nav>
     );
