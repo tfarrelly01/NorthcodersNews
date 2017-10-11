@@ -5,6 +5,7 @@
   "main": "index.jsx",
   "scripts": {
     "watch": "webpack --watch",
+    "start": "webpack -p",
     "test": "jest",
     "test:coverage": "jest --watch --coverage",
     "test:update": "jest -u",
