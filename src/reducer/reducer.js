@@ -158,7 +158,12 @@ const reducer = (prevState = INITIAL_STATE, action) => {
 
     // find index of article that was voted on and replace article  at this index with updated aricle
     let articleIndex = newState.articles.findIndex(article => article._id == newState.article._id);
-    newState.articles[articleIndex] = newState.article;
+
+    // And ensure that the number of comments value for the article is not lost
+    const commentCount = newState.articles[articleIndex].comments
+    newState.articles[articleIndex] = newState.article
+    newState.articles[articleIndex].comments = commentCount;
+    newState.article.comments = commentCount;
 
     newState.loading = false;
     return newState;

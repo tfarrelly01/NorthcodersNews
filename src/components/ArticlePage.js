@@ -13,7 +13,8 @@ class ArticlePage extends React.Component {
   componentDidMount() {
     const articleId = this.props.match.params.article_id;
     this.props.fetchUsers();
-    this.props.fetchArticle(articleId);
+    this.props.fetchArticleAndUser(articleId);  
+//    this.props.fetchArticle(articleId);
     this.props.fetchArticleComments(articleId);
   }
   
@@ -24,6 +25,7 @@ class ArticlePage extends React.Component {
           article={this.props.article}
           comments={this.props.comments} 
           users={this.props.users}
+          user={this.props.user}
         />
       </div>
     );
@@ -34,6 +36,7 @@ const mapStateToProps = (state) => {
   return {
     users: state.users,
     article: state.article,
+    user: state.user,
     comments: state.comments
   };
 }
@@ -42,10 +45,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchUsers: () => {
       dispatch(actions.fetchUsers());
-    },
-    fetchArticle: (articleId) => {
-      dispatch(actions.fetchArticle(articleId));
-    },
+   },
+  fetchArticleAndUser: (articleId) => {
+    dispatch(actions.fetchArticleAndUser(articleId));
+  },
+//    fetchArticle: (articleId) => {
+//      dispatch(actions.fetchArticle(articleId));
+//    },
     fetchArticleComments: (articleId) => {
       dispatch(actions.fetchArticleComments(articleId));
     }
@@ -54,10 +60,12 @@ const mapDispatchToProps = (dispatch) => {
 
 ArticlePage.propTypes = {
   fetchUsers: PropTypes.func.isRequired,
-  fetchArticle: PropTypes.func.isRequired,
+  fetchArticleAndUser: PropTypes.func.isRequired,
+  //  fetchArticle: PropTypes.func.isRequired,
   fetchArticleComments: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   users: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
   article: PropTypes.object.isRequired,
   comments: PropTypes.array.isRequired,
 };

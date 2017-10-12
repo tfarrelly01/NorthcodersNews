@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { 
-  fetchUser,
+//  fetchUser,
   articleVote, 
   addComment, 
   commentVote, 
@@ -23,10 +23,16 @@ class CommentList extends React.Component {
     this.handleVoteDown = this.handleVoteDown.bind(this);
   }
 
+/*
+  componentDidMount() {
+    this.props.fetchUser(this.props.article.created_by);
+	}
+
   componentWillReceiveProps(nextProps) {
     if (this.props.article.created_by !== nextProps.article.created_by)
         this.props.fetchUser(nextProps.article.created_by);
 	}
+*/
 
   handleInput(e) {
     this.setState({
@@ -126,9 +132,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUser: (username) => {
-      dispatch(fetchUser(username));
-    },
+ //   fetchUser: (username) => {
+ //     dispatch(fetchUser(username));
+ //   },
     articleVote: (articleId, vote) => {
       dispatch(articleVote(articleId, vote));
     },
@@ -149,7 +155,7 @@ CommentList.propTypes = {
   article: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
 	comments: PropTypes.array.isRequired,
-  fetchUser: PropTypes.func.isRequired,
+//  fetchUser: PropTypes.func.isRequired,
   articleVote: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   commentVote: PropTypes.func.isRequired, 

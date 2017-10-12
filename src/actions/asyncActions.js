@@ -86,6 +86,35 @@ export const fetchArticle = (articleId) => {
   };
 };
 
+// GET api/articles/:article_id then GET api/users/:username
+export const fetchArticleAndUser = (articleId) => {
+  return dispatch => {
+      let article;
+      dispatch(actions.fetchArticleRequest());
+      axios.get(`${ROOT}/articles/${articleId}`)
+        .then(res => {
+          article = res.data.article;
+          dispatch(actions.fetchUserRequest());
+          let user = axios.get(`${ROOT}/users/${article.created_by}`)
+            .then(res => {
+              return res.data.user;
+            })
+            .catch(err => {
+              dispatch(actions.fetchUserError(err));
+            })
+        
+          Promise.all([article, user])
+          .then(([article, user]) => {       
+            dispatch(actions.fetchArticleSuccess(article));
+            dispatch(actions.fetchUserSuccess(user));
+          })
+          .catch(err => {
+            dispatch(actions.fetchArticleError(err));
+          })  
+      })
+  };
+}
+
 // GET api/articles/:article_id/comments
 export const fetchArticleComments = (articleId) => {
   return dispatch => {

@@ -46,7 +46,7 @@ class CommentCard extends React.Component {
         <div>
           <h6 className="subtitle is-5">
             By <strong>{this.props.name}</strong> 
-            ({this.props.createdBy}): <strong>{moment(this.props.createdAt-1).fromNow()}</strong>
+            ({this.props.createdBy}): <strong>{moment(this.props.createdAt).fromNow()}</strong>
           </h6>
           <div className="content is-medium">
             <p>{this.props.body}</p>

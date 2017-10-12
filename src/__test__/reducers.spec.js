@@ -328,6 +328,34 @@ describe('REDUCER', () => {
 		});
 
 		test('action: ARTICLE_VOTE_SUCCESS', () => {
+			const state = {
+				article: {
+					_id: '59d36fae0e393d4260beb0fc',
+					title: 'Who Will Manage Your Club in 2021?',
+					body:
+						'Managerial changes are too common in the modern day game. Already in the 16/17 season, we have seen 14 managers lose their job from the Premier League to League Two. Swansea’s Francesco Guidolin became the first top division manager to lose his job but already question marks are raised regarding the future of the likes of David Moyes and Mike Phelan.',
+					created_by: 'tickle122',
+					belongs_to: 'football',
+					votes:3,
+					__v: 0,
+					comments: 5
+				},
+				articles: [
+					{
+						_id: '59d36fae0e393d4260beb0fc',
+						title: 'Who Will Manage Your Club in 2021?',
+						body:
+							'Managerial changes are too common in the modern day game. Already in the 16/17 season, we have seen 14 managers lose their job from the Premier League to League Two. Swansea’s Francesco Guidolin became the first top division manager to lose his job but already question marks are raised regarding the future of the likes of David Moyes and Mike Phelan.',
+						created_by: 'tickle122',
+						belongs_to: 'football',
+						votes:3,
+						__v: 0,
+						comments: 5
+					}
+				],
+				loading: true,
+				error: null
+			};
 			const action = {
 				type: types.ARTICLE_VOTE_SUCCESS,
 				payload: {
@@ -342,8 +370,10 @@ describe('REDUCER', () => {
 					comments: 5
 				}
 			};
-			const test = reducer(INITIAL_STATE, action);
+			const test = reducer(state, action);
+
 			expect(test.loading).toEqual(false);
+			expect(test.error).toEqual(null);
 			expect(test.article).toEqual(action.payload);
 		});
 
