@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopicCard Component TopicCard renders correctly 1`] = `
+<TopicCard
+  slug=""
+  title=""
+/>
+`;

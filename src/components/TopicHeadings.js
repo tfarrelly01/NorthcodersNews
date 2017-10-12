@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchTopics } from '../actions/asyncActions';
+import TopicCard from './TopicCard';
 
 class TopicHeadings extends React.Component {
 	componentDidMount() {
@@ -19,9 +20,11 @@ class TopicHeadings extends React.Component {
             </Link>              
             {this.props.topics.sort((a,b) => a.title > b.title ? 1 : -1) 
               .map(topic => (
-                <Link className="navbar-item button is-danger is-bold title is-4" key={topic._id} to={`/topics/${topic.slug}/articles`}>
-                  {topic.title}
-                </Link>
+                <TopicCard
+                  key={topic._id}
+                  slug={topic.slug}
+                  title={topic.title}
+                />
               ))}
           </div>
         </div>
